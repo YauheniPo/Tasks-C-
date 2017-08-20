@@ -12,7 +12,7 @@ void task1_circumference(void)
 	scanf("%lf", &diam);
 	
 	lgth_circle = M_PI * diam;
-	printf("Circumference = %lf", lgth_circle);
+	printf("\nCircumference = %lf", lgth_circle);
 
 	printf("\n--------------\n");
 }
@@ -102,6 +102,43 @@ void task5_coordinates_triangle(void)
 	printf("\n--------------\n");
 }
 
+void task6_swap_numbers(void)
+{
+	printf("----Task 6----");
+
+	int A, B, C, d;
+	printf("\nA = ");
+	scanf("%d", &A);
+	printf("B = ");
+	scanf("%d", &B);
+	printf("C = ");
+	scanf("%d", &C);
+
+	d = B;
+	B = A;
+	A = C;
+	C = d;
+	
+	printf("\nA = %d, B = %d, C = %d", A, B, C);
+
+	printf("\n--------------\n");
+}
+
+void task7_culculate_expression(void)
+{
+	printf("----Task 7----");
+
+	double y, x;
+	printf("\nx = ");
+	scanf("%lf", &x);
+
+	y = 3 * pow(x, 6) - 6 * pow(x, 2) - 7;
+	
+	printf("\ny = %lf", y);
+
+	printf("\n--------------\n");
+}
+
 void task8_sum_and_multi(void)
 {
 	printf("----Task 8----");
@@ -119,6 +156,96 @@ void task8_sum_and_multi(void)
 	printf("\n--------------\n");
 }
 
+void task9_geometric_mean(void)
+{
+	printf("----Task 9----");
+
+	double x, y, mean_geo;
+	printf("\nx = ");
+	scanf("%lf", &x);
+	printf("\ny = ");
+	scanf("%lf", &y);
+
+	mean_geo = sqrt(x * y);
+
+	printf("\nGeometric Mean = %lf", mean_geo);
+
+	printf("\n--------------\n");
+}
+
+void task10_linear_equation(void)
+{
+	printf("----Task 10----");
+
+	double x, y, A1, B1, C1, A2, B2, C2;
+	printf("\nA1 = ");
+	scanf("%lf", &A1);
+	printf("\nB1 = ");
+	scanf("%lf", &B1);
+	printf("\nC1 = ");
+	scanf("%lf", &C1);
+	printf("\nA2 = ");
+	scanf("%lf", &A2);
+	printf("\nB2 = ");
+	scanf("%lf", &B2);
+	printf("\nC2 = ");
+	scanf("%lf", &C2);
+
+	x = (C1 * B2 - C2 * B1) / (A1 * B2 - A2 * B1);
+	y = (C2 * A1 - C1 * A2) / (A1 * B2 - A2 * B1);
+
+	printf("\nx = %lf, y = %lf", x, y);
+
+	printf("\nA1*x + B1*y = C1");
+	printf("\nA2*x + B2*y = C2");
+	C1 = A1 * x + B1 * y;
+	C2 = A2 * x + B2 * y;
+
+	printf("\nC1 = %lf", C1);
+	printf("\nC2 = %lf", C2);
+
+	printf("\n--------------\n");
+}
+
+void task11_price_per_kilogram(void)
+{
+	printf("----Task 11----");
+
+	double odds, kg_choco, kg_toff, price_choc, price_toff, mass_choc, mass_toff;
+	printf("\nchocolates price = ");
+	scanf("%lf", &price_choc);
+	printf("chocolates mass = ");
+	scanf("%lf", &mass_choc);
+	printf("toffee price = ");
+	scanf("%lf", &price_toff);
+	printf("toffee mass = ");
+	scanf("%lf", &mass_toff);
+
+	kg_choco = price_choc / mass_choc;
+	printf("\nThe price of a kilogram of chocolates = %lf", kg_choco);
+	kg_toff = price_toff / mass_toff;
+	printf("\nThe price of a kilogram of toffee = %lf", kg_toff);
+
+	if(kg_choco > kg_toff)
+	{
+		odds = kg_choco / kg_toff;
+		printf("\nChocolates cost more than %lf times", odds);
+	}
+	else if(kg_choco < kg_toff)
+	{
+		odds = kg_toff / kg_choco;
+		printf("\nChocolates are cheaper %lf times", odds);
+	}
+	else 
+	{
+		odds = 0;
+		printf("Prices are same");
+	}
+
+	printf("\n--------------\n");
+}
+
+
 void main(void)
 {
 	task1_circumference();
@@ -126,7 +253,12 @@ void main(void)
 	task3_circle();
 	task4_circle();
 	task5_coordinates_triangle();
+	task6_swap_numbers();
+	task7_culculate_expression();
 	task8_sum_and_multi();
+	task9_geometric_mean();
+	task10_linear_equation();
+	task11_price_per_kilogram();
 
 	printf("\nPress any key to exit");
 
