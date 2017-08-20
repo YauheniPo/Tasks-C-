@@ -121,10 +121,10 @@ void task8_sum_and_multi(void)
 
 void main(void)
 {
-	//task1_circumference();
-	//task2_triangle();
-	//task3_circle();
-	//task4_circle();
+	task1_circumference();
+	task2_triangle();
+	task3_circle();
+	task4_circle();
 	task5_coordinates_triangle();
 	task8_sum_and_multi();
 
