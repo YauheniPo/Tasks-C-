@@ -6,27 +6,31 @@
 
 void main()
 {
-	char ch[100];
-	printf("ch=");
+	char str[100];
+	printf("str=");
 	//gets(ch); //ввод строки
-	scanf("%s", &ch);
-	printf("ch=%s\n", ch);
-
-	int v = 12, p = 4, h = 4;
-	printf("v=%0*.*d\n", p, h, v); //0012 p-вся длина значения,h-длина десятичной части
+	scanf("%s", &str); //ф-ция ввода с клавиатуры и присваивание этого значения указанной переменной
+	printf("str=%s\n", str);
+	puts(str); //=printf("%s\n", ch); =printf("Hello!!!\n");
 		
 	//fflush(stdin); //очистка буфера ввода из клавиатуры
 
-	char ch2;
-	ch2 = getch(); //возвращает код введенного символа и не отображает символ
-	printf("\nch2=%c=%d", ch2, ch2);
+	char ch;
+	ch = getch(); //возвращает код введенного символа и не отображает символ
+	printf("\nch=%c=%d\n", ch, ch); //
+	putchar(ch); //=printf("%c", 'a'); =printf('a');-без \n
+	
+	char ch1 = 102;
 	//scanf("%s", &ch2);
-	//printf("\nch2=%c", ch2);
-		
+	printf("\nch1=%c", ch1); //f
+
+	int v = 12, p = 4, h = 4;
+	printf("\nv=%0*.*d\n", p, h, v); //0012 p-вся длина значения,h-длина десятичной части
+
 	int a, n, i, k = 0;
 	double s = 0;
 	printf("\nEnter n - ");
-	scanf("%d", &n); //ф-ция ввода с клавиатуры и присваивание этого значения указанной переменной
+	scanf("%d", &n);
 	printf("n = %d", n);
 	for (i = 1; i <= n; i++) 
 	{
