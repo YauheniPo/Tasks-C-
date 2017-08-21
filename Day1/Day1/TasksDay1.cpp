@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
-#define M_PI	3.14159265358979323846
+#define M_PI	3.1415927
 
 void task1_circumference(void)
 {
@@ -17,7 +17,7 @@ void task1_circumference(void)
 	printf("\n--------------\n");
 }
 
-void task2_triangle(void)
+void task2_right_triangle(void)
 {
 	printf("----Task 2----");
 
@@ -28,7 +28,7 @@ void task2_triangle(void)
 	scanf("%lf", &b);
 
 	c = sqrt (pow(a, 2) + pow(b, 2));
-	printf("Hypotenuse = %lf", c);
+	printf("\nHypotenuse = %lf", c);
 
 	P = a + b + c;
 	printf("\nPerimeter = %lf", P);
@@ -45,7 +45,7 @@ void task3_circle(void)
 	scanf("%lf", &lgth_circle);
 	
 	R = lgth_circle / (2 * M_PI);
-	printf("Radius = %lf", R);
+	printf("\nRadius = %lf", R);
 
 	S = 2 * M_PI * pow(R, 2);
 	printf("\nArea = %lf", S);
@@ -62,7 +62,7 @@ void task4_circle(void)
 	scanf("%lf", &S);
 	
 	D = sqrt(S /  M_PI);
-	printf("Diameter = %lf", D);
+	printf("\nDiameter = %lf", D);
 
 	lgth_circle = 2 * M_PI * D / 2;
 	printf("\nCircumference = %lf", lgth_circle);
@@ -163,7 +163,7 @@ void task9_geometric_mean(void)
 	double x, y, mean_geo;
 	printf("\nx = ");
 	scanf("%lf", &x);
-	printf("\ny = ");
+	printf("y = ");
 	scanf("%lf", &y);
 
 	mean_geo = sqrt(x * y);
@@ -180,15 +180,15 @@ void task10_linear_equation(void)
 	double x, y, A1, B1, C1, A2, B2, C2;
 	printf("\nA1 = ");
 	scanf("%lf", &A1);
-	printf("\nB1 = ");
+	printf("B1 = ");
 	scanf("%lf", &B1);
-	printf("\nC1 = ");
+	printf("C1 = ");
 	scanf("%lf", &C1);
-	printf("\nA2 = ");
+	printf("A2 = ");
 	scanf("%lf", &A2);
-	printf("\nB2 = ");
+	printf("B2 = ");
 	scanf("%lf", &B2);
-	printf("\nC2 = ");
+	printf("C2 = ");
 	scanf("%lf", &C2);
 
 	x = (C1 * B2 - C2 * B1) / (A1 * B2 - A2 * B1);
@@ -245,11 +245,45 @@ void task11_price_per_kilogram(void)
 	printf("\n--------------\n");
 }
 
+void task12_angles_in_radians(void) 
+{
+	printf("----Task 12----");
+	
+	double alpha, rad;
+	printf("\nEnter alpha: ");
+	scanf("%lf", &alpha);
+
+	rad = alpha * M_PI / 180;
+	
+	printf("\nAlpha in radians = %lf", rad);
+
+	printf("\n--------------\n");
+}
+
+void task_variant3(void)
+{
+	printf("----Variant 3----");
+	
+	double alpha, z1, z2;
+	printf("\nEnter alpha: ");
+	scanf("%lf", &alpha);
+
+	printf("z1 = (sin(2*alpha) + sin(5*alpha) - sin(3*alpha)) / (cos(alpha) + 1 - 2 * (sin(2*alpha))^2)");
+	printf("\nz2 = 2 * sin(alpha)\n");
+
+	z1 = (sin(2*alpha) + sin(5*alpha) - sin(3*alpha)) / (cos(alpha) + 1 - 2 * pow((sin(2*alpha)), 2));
+	z2 = 2 * sin(alpha);
+
+	printf("\nz1 = %lf", z1);
+	printf("\nz2 = %lf", z2);
+
+	printf("\n--------------\n");
+}
 
 void main(void)
 {
 	task1_circumference();
-	task2_triangle();
+	task2_right_triangle();
 	task3_circle();
 	task4_circle();
 	task5_coordinates_triangle();
@@ -259,6 +293,8 @@ void main(void)
 	task9_geometric_mean();
 	task10_linear_equation();
 	task11_price_per_kilogram();
+	task12_angles_in_radians(); 
+	task_variant3();
 
 	printf("\nPress any key to exit");
 
