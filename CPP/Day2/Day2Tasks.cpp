@@ -3,11 +3,13 @@
 #include <conio.h>
 #define e	2.71828182846
 
+void integers(int num);
+
 void task1(void)
 {
 	puts("----task1----");
 	int x;
-	printf("x = ");
+	printf("number x = ");
 	scanf("%d", &x);
 	if(x > 0)
 	{
@@ -401,68 +403,13 @@ void task12(void)
 					printf("ninety ");
 					break;
 				}
-				switch(numbers)
-				{
-				case 1:
-					printf("one");
-					break;
-				case 2:
-					printf("two");
-					break;
-				case 3:
-					printf("three");
-					break;
-				case 4:
-					printf("four");
-					break;
-				case 5:
-					printf("five");
-					break;
-				case 6:
-					printf("six");
-					break;
-				case 7:
-					printf("seven");
-					break;
-				case 8:
-					printf("eight");
-					break;
-				case 9:
-					printf("nine");
-					break;
-				}
+				integers(numbers);
 			}
 			else
 			{
+				integers(part);
 				switch(part)
 				{
-				case 1:
-					printf("one");
-					break;
-				case 2:
-					printf("two");
-					break;
-				case 3:
-					printf("three");
-					break;
-				case 4:
-					printf("four");
-					break;
-				case 5:
-					printf("five");
-					break;
-				case 6:
-					printf("six");
-					break;
-				case 7:
-					printf("seven");
-					break;
-				case 8:
-					printf("eight");
-					break;
-				case 9:
-					printf("nine");
-					break;
 				case 10:
 					printf("ten");
 					break;
@@ -501,6 +448,42 @@ void task12(void)
 			puts("Incorrect value");
 			break;
 		}
+	}
+}
+
+void integers(int num)
+{
+	switch(num)
+	{
+	case 1:
+		printf("one");
+		break;
+	case 2:
+		printf("two");
+		break;
+	case 3:
+		printf("three");
+		break;
+	case 4:
+		printf("four");
+		break;
+	case 5:
+		printf("five");
+		break;
+	case 6:
+		printf("six");
+		break;
+	case 7:
+		printf("seven");
+		break;
+	case 8:
+		printf("eight");
+		break;
+	case 9:
+		printf("nine");
+		break;
+	default:
+		break;
 	}
 }
 

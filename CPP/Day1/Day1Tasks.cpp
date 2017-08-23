@@ -107,11 +107,11 @@ void task6_swap_numbers(void)
 	printf("----Task 6----");
 
 	int A, B, C, d;
-	printf("\nA = ");
+	printf("\nnumber A = ");
 	scanf("%d", &A);
-	printf("B = ");
+	printf("number B = ");
 	scanf("%d", &B);
-	printf("C = ");
+	printf("number C = ");
 	scanf("%d", &C);
 
 	d = B;
@@ -129,7 +129,7 @@ void task7_culculate_expression(void)
 	printf("----Task 7----");
 
 	double y, x;
-	printf("\nx = ");
+	printf("\nvariable x = ");
 	scanf("%lf", &x);
 
 	y = 3 * pow(x, 6) - 6 * pow(x, 2) - 7;
@@ -144,11 +144,11 @@ void task8_sum_and_multi(void)
 	printf("----Task 8----");
 
 	int x, sum, multi;
-	printf("\nnumber = ");
+	printf("\nåwo-digit number: ");
 	scanf("%d", &x);
 	
 	sum = (x % 10) + (x / 10);
-	printf("sum = %d", sum);
+	printf("\nsum = %d", sum);
 
 	multi = (x % 10) * (x / 10);
 	printf("\nMultiplication = %d", multi);
@@ -161,14 +161,14 @@ void task9_geometric_mean(void)
 	printf("----Task 9----");
 
 	double x, y, mean_geo;
-	printf("\nx = ");
+	printf("\nPositive number x = ");
 	scanf("%lf", &x);
-	printf("y = ");
+	printf("Positive number y = ");
 	scanf("%lf", &y);
 
 	mean_geo = sqrt(x * y);
 
-	printf("\nGeometric Mean = %lf", mean_geo);
+	printf("\nGeometric mean = %lf", mean_geo);
 
 	printf("\n--------------\n");
 }
@@ -178,7 +178,7 @@ void task10_linear_equation(void)
 	printf("----Task 10----");
 
 	double x, y, A1, B1, C1, A2, B2, C2;
-	printf("\nA1 = ");
+	printf("\nCoefficients for equation\nA1 = ");
 	scanf("%lf", &A1);
 	printf("B1 = ");
 	scanf("%lf", &B1);

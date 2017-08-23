@@ -11,10 +11,10 @@ void main(void)
 		printf("\n%lf", (double)num);
 
 	int i = 2;
-	enum number {ONE = 1, TWO = 2, THREE = 3};
-	switch(2) //принимает только целочисл.
+	enum number {ONE = 1, TWO, THREE}; // последующие на +1 чем предыдущие
+	switch(2) //принимает только целочисл. или char '+'
 	{
-	case ONE:
+	case ONE: //case const1: сравнение с константой
 		puts("\nONE");
 		break;
 	case TWO:
