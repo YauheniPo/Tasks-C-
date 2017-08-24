@@ -558,9 +558,12 @@ void task13(void)
 				printf("hearts");
 				break;
 			}
+			printf("\nEnter card=0 and suit=0 for to exit");
 		}
-		else
+		else if (!card && !suit)
 			break;
+		else
+			printf("Repeat");
 	}
 }
 
