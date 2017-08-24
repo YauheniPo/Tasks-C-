@@ -3,53 +3,47 @@
 #include <conio.h>
 #define e	2.71828182846
 
-void integers(int num);
+void integers1_9(int number);
 
 void task1(void)
 {
 	puts("----task1----");
+
 	int x;
+
 	printf("number x = ");
 	scanf("%d", &x);
-	if(x > 0)
-	{
-		x += 1;
-	}
+
+	x = (x > 0) ? x + 1 : x;
+
 	printf("x = %d\n", x);
 }
 
 void task2(void)
 {
 	puts("----task2----");
+
 	int x;
-	printf("x = ");
+
+	printf("number x = ");
 	scanf("%d", &x);
-	if(!x)
-	{
-		x = 10;
-	}
-	else if(x % 2)
-	{
-		if(x > 0)
-		{
-			x += 1;
-		}
-		else
-		{
-			x -= 2;
-		}
-	}
+
+	x = (!x) ? 10 : ((x % 2) ? ((x > 0) ? x + 1 : x -2) : x);
+
 	printf("x = %d\n", x);
 }
 
 void task3(void)
 {
 	puts("----task3----");
+
 	int x, y;
-	printf("x = ");
+
+	printf("number x = ");
 	scanf("%d", &x);
-	printf("y = ");
+	printf("number y = ");
 	scanf("%d", &y);
+
 	if(x > y)
 	{
 		printf("x > y %d>%d\n", x, y);
@@ -67,14 +61,17 @@ void task3(void)
 void task4(void)
 {
 	puts("----task4----");
+
 	int x, y, z, max, sum, product;
 	double average;
-	printf("x = ");
+
+	printf("number x = ");
 	scanf("%d", &x);
-	printf("y = ");
+	printf("number y = ");
 	scanf("%d", &y);
-	printf("z = ");
+	printf("number z = ");
 	scanf("%d", &z);
+
 	if(x > y && x > z)
 	{
 		max = x;
@@ -87,22 +84,27 @@ void task4(void)
 	{
 		max = y;
 	}
+
 	sum = x + y + z;
 	average = sum / 3.;
 	product = x * y * z;
+
 	printf("max = %d average = %lf product = %d\n", max, average, product);
 }
 
 void task5(void)
 {
 	puts("----task5----");
+
 	int x, y, z;
-	printf("x = ");
+
+	printf("number x = ");
 	scanf("%d", &x);
-	printf("y = ");
+	printf("number y = ");
 	scanf("%d", &y);
-	printf("z = ");
+	printf("number z = ");
 	scanf("%d", &z);
+
 	if(x < y && y < z) 
 	{
 		printf("x < y < z\n");
@@ -156,12 +158,15 @@ void task5(void)
 void task6(void)
 {
 	puts("----task6----");
+
 	int x;
-	printf("x = ");
+
+	printf("number x = ");
 	scanf("%d", &x);
+
 	if(x >= 60)
 	{
-		puts("Perfect.");
+		puts("Perfect");
 	}
 	else if(x >=30 && x < 60)
 	{
@@ -180,9 +185,12 @@ void task6(void)
 void task7(void)
 {
 	puts("----task7----");
+
 	int x;
+
 	printf("Month number = ");
 	scanf("%d", &x);
+
 	switch(x)
 	{
 	case 12:
@@ -214,13 +222,16 @@ void task7(void)
 void task8(void)
 {
 	puts("----task8----");
+
 	double A, B, C;
-	printf("A = ");
+
+	printf("numbers:\nA = ");
 	scanf("%lf", &A);
 	printf("B = ");
 	scanf("%lf", &B);
 	printf("C = ");
 	scanf("%lf", &C);
+
 	if((A > B && B > C) || (A < B && B < C))
 	{
 		A = 2 * A;
@@ -233,13 +244,16 @@ void task8(void)
 		B = -B;
 		C = -C;
 	}
+
 	printf("A = %lf B = %lf C = %lf\n", A, B, C);
 }
 
 void task9(void)
 {
 	puts("----task9----");
+
 	double xO, yO, xA, yA, r, f;
+
 	puts("Center of a circle");
 	puts("O:");
 	scanf("\n%lf", &xO);
@@ -249,77 +263,73 @@ void task9(void)
 	puts("Enter a point A:");
 	scanf("\n%lf", &xA);
 	scanf("\n%lf", &yA);
+
 	f = pow(xO - xA, 2) + pow(yO - yA, 2);
-	if(f <= pow(r, 2))
-	{
-		puts("The point lies inside the circle");
-	}
-	else
-	{
-		puts("The point doesn't lie inside the circle");
-	}
+
+	(f <= pow(r, 2)) ? puts("The point lies inside the circle") : puts("The point doesn't lie inside the circle");
 }
 
 void task10(void)
 {
 	puts("----task10----");
-	int c5 = 5000, c10 = 10000, c20 = 20000, price, part;
-	printf("price: ");
+
+	int price, part;
+
+	printf("coints: 5000, 10000, 20000\nprice : ");
 	scanf("%d", &price);
-	if(!(price%5000))
+
+	part = price / 5000;
+	switch(part)
 	{
-		part = price / 5000;
-		switch(part)
-		{
-		case 3:
-			puts("coins 5000 + 10000");
-			break;
-		case 5:
-			puts("coins 5000 + 20000");
-			break;
-		case 6:
-			puts("coins 10000 + 20000");
-			break;
-		default:
-			puts("Incorrect price");
-			break;
-		}
-	}
-	else
-	{
-		puts("Incorrect price");
+	case 3:
+		puts("coins 5000 + 10000");
+		break;
+	case 5:
+		puts("coins 5000 + 20000");
+		break;
+	case 6:
+		puts("coins 10000 + 20000");
+		break;
+	default:
+		puts("Not pay off");
+		break;
 	}
 }
+
 
 void task11(void)
 {
 	puts("----task11----");
+
 	int day_number;
+	enum week { MONDAY = 1, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY };
+
 	printf("day number: ");
 	scanf("%d", &day_number);
+
 	if(day_number >= 1 && day_number <= 7)
 	{
 		switch(day_number)
 		{
-		case 1:
+		case MONDAY:
 			puts("Monday");
 			break;
-		case 2:
+		case TUESDAY:
 			puts("Tuesday");
 			break;
-		case 3:
+		case WEDNESDAY:
 			puts("Wednesday");
 			break;
-		case 4:
+		case THURSDAY:
 			puts("Thursday");
 			break;
-		case 5:
+		case FRIDAY:
 			puts("Friday");
 			break;
-		case 6:
+		case SATURDAY:
 			puts("Saturday");
 			break;
-		case 7:
+		case SUNDAY:
 			puts("Sunday");
 			break;
 		}
@@ -333,16 +343,17 @@ void task11(void)
 void task12(void)
 {
 	puts("----task12----");
-	int value, hundreds, tens, numbers, part;
+
+	int value, hundreds, tens, number, part_without_hundreds;
 
 	while(1)
 	{
 		printf("\nEnter value: ");
 		scanf("%d", &value);
 		hundreds = value / 100;
-		part = value % 100;
-		tens = part / 10;
-		numbers = value % 10;
+		part_without_hundreds = value % 100;
+		tens = part_without_hundreds / 10;
+		number = value % 10;
 		if(value >= 100 && value <= 999)
 		{
 			switch(hundreds)
@@ -403,12 +414,12 @@ void task12(void)
 					printf("ninety ");
 					break;
 				}
-				integers(numbers);
+				integers1_9(number);
 			}
 			else
 			{
-				integers(part);
-				switch(part)
+				integers1_9(part_without_hundreds);
+				switch(part_without_hundreds)
 				{
 				case 10:
 					printf("ten");
@@ -451,9 +462,9 @@ void task12(void)
 	}
 }
 
-void integers(int num)
+void integers1_9(int number)
 {
-	switch(num)
+	switch(number)
 	{
 	case 1:
 		printf("one");
@@ -490,6 +501,7 @@ void integers(int num)
 void task13(void)
 {
 	puts("\n----task13----");
+
 	int card, suit;
 
 	while(1)
@@ -498,6 +510,7 @@ void task13(void)
 		scanf("%d", &card);
 		printf("Enter card suit: ");
 		scanf("%d", &suit);
+
 		if(card >= 6 && card <= 14 && suit >=1 && suit <= 4)
 		{
 			switch(card)
@@ -530,7 +543,7 @@ void task13(void)
 				printf("Ace ");
 				break;
 			}
-			switch(card)
+			switch(suit)
 			{
 			case 1:
 				printf("spades");
@@ -546,15 +559,20 @@ void task13(void)
 				break;
 			}
 		}
+		else
+			break;
 	}
 }
 
 void variant11(void)
 {
 	puts("\n----variant11----");
+
 	double z, x, y;
-	printf("z = ");
+
+	printf("number z = ");
 	scanf("%lf", &z);
+
 	if(z > 0)
 	{
 		puts("x=1/(z^2+2z)");
@@ -591,6 +609,8 @@ void main(void)
 	task12();
 	task13();
 	variant11();
+
+	printf("\nPress any key to exit");
 
 	_getch();
 }

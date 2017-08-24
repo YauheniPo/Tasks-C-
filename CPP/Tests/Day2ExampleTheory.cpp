@@ -5,7 +5,7 @@
 void main(void) 
 {
 	short int num;
-	printf("short int = %hd bytes", sizeof(num));
+	printf("short int = %lf bytes", sizeof(num)); //-число байтов переменной
 
 	if(num)
 		printf("\n%lf", (double)num);
