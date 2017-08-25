@@ -3,7 +3,7 @@
 #include <conio.h>
 #define e	2.71828182846
 
-void integers1_9(int number);
+//----------------------------------------------------------------
 
 void task1(void)
 {
@@ -19,6 +19,8 @@ void task1(void)
 	printf("x = %d\n", x);
 }
 
+//----------------------------------------------------------------
+
 void task2(void)
 {
 	puts("----task2----");
@@ -32,6 +34,8 @@ void task2(void)
 
 	printf("x = %d\n", x);
 }
+
+//----------------------------------------------------------------
 
 void task3(void)
 {
@@ -57,6 +61,8 @@ void task3(void)
 		printf("x < y %d<%d\n", x, y);
 	}
 }
+
+//----------------------------------------------------------------
 
 void task4(void)
 {
@@ -91,6 +97,8 @@ void task4(void)
 
 	printf("max = %d average = %lf product = %d\n", max, average, product);
 }
+
+//----------------------------------------------------------------
 
 void task5(void)
 {
@@ -155,6 +163,8 @@ void task5(void)
 	}
 }
 
+//----------------------------------------------------------------
+
 void task6(void)
 {
 	puts("----task6----");
@@ -181,6 +191,8 @@ void task6(void)
 		puts("Bad");
 	}
 }
+
+//----------------------------------------------------------------
 
 void task7(void)
 {
@@ -219,6 +231,8 @@ void task7(void)
 	}
 }
 
+//----------------------------------------------------------------
+
 void task8(void)
 {
 	puts("----task8----");
@@ -248,6 +262,8 @@ void task8(void)
 	printf("A = %lf B = %lf C = %lf\n", A, B, C);
 }
 
+//----------------------------------------------------------------
+
 void task9(void)
 {
 	puts("----task9----");
@@ -268,6 +284,8 @@ void task9(void)
 
 	(f <= pow(r, 2)) ? puts("The point lies inside the circle") : puts("The point doesn't lie inside the circle");
 }
+
+//----------------------------------------------------------------
 
 void task10(void)
 {
@@ -296,6 +314,7 @@ void task10(void)
 	}
 }
 
+//----------------------------------------------------------------
 
 void task11(void)
 {
@@ -337,6 +356,44 @@ void task11(void)
 	else
 	{
 		puts("Incorrect day number");
+	}
+}
+
+//----------------------------------------------------------------
+
+void integers1_9(int number)
+{
+	switch(number)
+	{
+	case 1:
+		printf("one");
+		break;
+	case 2:
+		printf("two");
+		break;
+	case 3:
+		printf("three");
+		break;
+	case 4:
+		printf("four");
+		break;
+	case 5:
+		printf("five");
+		break;
+	case 6:
+		printf("six");
+		break;
+	case 7:
+		printf("seven");
+		break;
+	case 8:
+		printf("eight");
+		break;
+	case 9:
+		printf("nine");
+		break;
+	default:
+		break;
 	}
 }
 
@@ -462,41 +519,7 @@ void task12(void)
 	}
 }
 
-void integers1_9(int number)
-{
-	switch(number)
-	{
-	case 1:
-		printf("one");
-		break;
-	case 2:
-		printf("two");
-		break;
-	case 3:
-		printf("three");
-		break;
-	case 4:
-		printf("four");
-		break;
-	case 5:
-		printf("five");
-		break;
-	case 6:
-		printf("six");
-		break;
-	case 7:
-		printf("seven");
-		break;
-	case 8:
-		printf("eight");
-		break;
-	case 9:
-		printf("nine");
-		break;
-	default:
-		break;
-	}
-}
+//----------------------------------------------------------------
 
 void task13(void)
 {
@@ -566,6 +589,8 @@ void task13(void)
 			printf("Repeat");
 	}
 }
+
+//----------------------------------------------------------------
 
 void variant11(void)
 {

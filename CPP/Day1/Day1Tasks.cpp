@@ -3,6 +3,8 @@
 #include <math.h>
 #define M_PI	3.1415927
 
+//----------------------------------------------------------------
+
 void task1_circumference(void)
 {
 	printf("----Task 1----");
@@ -16,6 +18,8 @@ void task1_circumference(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task2_right_triangle(void)
 {
@@ -36,6 +40,8 @@ void task2_right_triangle(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task3_circle(void)
 {
 	printf("----Task 3----");
@@ -53,6 +59,8 @@ void task3_circle(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task4_circle(void)
 {
 	printf("----Task 4----");
@@ -69,6 +77,8 @@ void task4_circle(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task5_coordinates_triangle(void)
 {
@@ -102,6 +112,8 @@ void task5_coordinates_triangle(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task6_swap_numbers(void)
 {
 	printf("----Task 6----");
@@ -124,6 +136,8 @@ void task6_swap_numbers(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task7_culculate_expression(void)
 {
 	printf("----Task 7----");
@@ -138,6 +152,8 @@ void task7_culculate_expression(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task8_sum_and_multi(void)
 {
@@ -156,6 +172,8 @@ void task8_sum_and_multi(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task9_geometric_mean(void)
 {
 	printf("----Task 9----");
@@ -172,6 +190,8 @@ void task9_geometric_mean(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task10_linear_equation(void)
 {
@@ -206,6 +226,8 @@ void task10_linear_equation(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task11_price_per_kilogram(void)
 {
@@ -245,6 +267,8 @@ void task11_price_per_kilogram(void)
 	printf("\n--------------\n");
 }
 
+//----------------------------------------------------------------
+
 void task12_angles_in_radians(void) 
 {
 	printf("----Task 12----");
@@ -259,6 +283,8 @@ void task12_angles_in_radians(void)
 
 	printf("\n--------------\n");
 }
+
+//----------------------------------------------------------------
 
 void task_variant3(void)
 {
