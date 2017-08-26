@@ -178,11 +178,11 @@ void task6(void)
 	{
 		puts("Perfect");
 	}
-	else if(x >=30 && x < 60)
+	else if(x >= 30)
 	{
 		puts("Good");
 	}
-	else if(x >= 17 && x < 30)
+	else if(x >= 17)
 	{
 		puts("Satisfactory");
 	}

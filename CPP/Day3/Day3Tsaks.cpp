@@ -58,7 +58,7 @@ void task12(void)
 	N = (N < 0) ? -N : N;
 
 	int i;
-	for(i = 1; sum < N; i++)
+	for(i = 1; sum < N; ++i)
 	{
 		sum += i;
 	}
@@ -155,7 +155,7 @@ void task9(void)
 
 	min = num;
 
-	for(int i = 1, l = num; i <= l; i++)
+	for(int i = 1, l = num; i <= l; ++i)
 	{
 		printf("\nnumber: ");
 		scanf("%lf", &num);
@@ -186,16 +186,16 @@ void task8(void)
 		switch(num)
 		{
 		case -10:
-			n_10++;
+			++n_10;
 			break;
 		case 5:
-			n5++;
+			++n5;
 			break;
 		case 25:
-			n25++;
+			++n25;
 			break;
 		case 100:
-			n100++;
+			++n100;
 			break;
 		default:
 			break;
@@ -239,10 +239,10 @@ void task6(void)
 
 	bool b;
 
-	for(int i = 2; i <= 10000; i++)
+	for(int i = 2; i <= 10000 / 2; ++i)
 	{
 		b = true;
-		for(int j = 2; j < i; j++)
+		for(int j = 2; j < i; ++j)
 		{
 			if(i % j == 0)
 			{
@@ -263,7 +263,8 @@ void task5(void)
 {
 	puts("\n----task5----");
 
-	int num, prod;
+	int num, i, sum;
+	bool b;
 
 	do
 	{
@@ -272,15 +273,23 @@ void task5(void)
 		fflush(stdin);
 
 		num = (num < 0) ? -num : num;
-
-		prod = 0;
-		for(int i = 1; i < num; i++)
+		b = 0;
+		sum = 1;
+		for(i = 2; i <= num / 2; ++i)
 		{
-			prod += i;
-			if(prod == num)
+			if(num % 2 == 0)
 			{
-				printf("\nPerfect number");
+				sum += i;
+				if(sum == num)
+				{
+					b = 1;
+					break;
+				}
 			}
+		}
+		if(b)
+		{
+			printf("%d ", sum);
 		}
 	}
 	while(num != 0);
@@ -313,7 +322,7 @@ void task4(void)
 			numB = n;
 		}
 
-		for(numA += 1; numA < numB; numA++)
+		for(numA += 1; numA < numB; ++numA)
 		{
 			for(int n = 1; n <= numA; n++)
 			{
@@ -339,9 +348,9 @@ void task3(void)
 	
 	n = (n < 0) ? -n : n;
 
-	for(int i = 1; i <= n; i++)
+	for(int i = 1; i <= n; ++i)
 	{
-		for(int j = 1; j <= i; j++)
+		for(int j = 1; j <= i; ++j)
 		{
 			prod *= j;
 		}
@@ -379,15 +388,19 @@ void task1(void)
 	printf("\nEnter number: ");
 	scanf("%d", &num);
 
-	for(int i = 1; i <= num; i++)
+	if(num < 0)
+	{
+		return;
+	}
+
+	for(int i = 1; i <= num; ++i)
 	{
 		fact *= i; 
 	}
 
 	printf("\nFactorial of number %d = %d", num, fact);
 }
-
-void main(void)
+long int main(void)
 {
 	task13();
 	task12();
