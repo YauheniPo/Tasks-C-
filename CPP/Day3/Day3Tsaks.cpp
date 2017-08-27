@@ -340,24 +340,21 @@ void task3(void)
 {
 	puts("\n----task3----");
 
-	double n, fact = 0, prod = 1;
+	double n, fact = 1, sum = 0;
 	puts("Sum of factorials number");
 	printf("\nEnter number: ");
 	scanf("%lf", &n);
 	fflush(stdin);
 	
-	n = (n < 0) ? -n : n;
+	n = (n <= 0) ? 1 : n;
 
+	int k = 1;
 	for(int i = 1; i <= n; ++i)
 	{
-		for(int j = 1; j <= i; ++j)
-		{
-			prod *= j;
-		}
-		fact += prod;
-		prod = 1;
+		fact *= i;
+		sum += fact;
 	}
-	printf("\nSum of factorials = %lf", fact);
+	printf("\n%.0lf! = %.0lf Sum of factorials = %.0lf",n,fact,sum);
 }
 
 //----------------------------------------------------------------
