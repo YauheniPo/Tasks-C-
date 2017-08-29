@@ -2,9 +2,7 @@
 #include <math.h>
 #include <conio.h>
 #define e	2.71828182846
-
 //----------------------------------------------------------------
-
 void task1(void)
 {
 	puts("----task1----");
@@ -18,9 +16,7 @@ void task1(void)
 
 	printf("x = %d\n", x);
 }
-
 //----------------------------------------------------------------
-
 void task2(void)
 {
 	puts("----task2----");
@@ -34,36 +30,34 @@ void task2(void)
 
 	printf("x = %d\n", x);
 }
-
 //----------------------------------------------------------------
-
 void task3(void)
 {
 	puts("----task3----");
 
 	int x, y;
+	char ch;
 
-	printf("number x = ");
+	printf("compare number x = ");
 	scanf("%d", &x);
-	printf("number y = ");
+	printf("and number y = ");
 	scanf("%d", &y);
 
 	if(x > y)
 	{
-		printf("x > y %d>%d\n", x, y);
+		ch = '>';
 	}
 	else if(x == y)
 	{
-		printf("x = y %d=%d\n", x, y);
+		ch = '=';
 	}
 	else
 	{
-		printf("x < y %d<%d\n", x, y);
+		ch = '<';
 	}
+	printf("%d%c%d\n", x, ch, y);
 }
-
 //----------------------------------------------------------------
-
 void task4(void)
 {
 	puts("----task4----");
@@ -92,14 +86,12 @@ void task4(void)
 	}
 
 	sum = x + y + z;
-	average = sum / 3.;
+	average = sum / 3.0;
 	product = x * y * z;
 
 	printf("max = %d average = %lf product = %d\n", max, average, product);
 }
-
 //----------------------------------------------------------------
-
 void task5(void)
 {
 	puts("----task5----");
@@ -162,9 +154,7 @@ void task5(void)
 		printf("x = y = z\n");
 	}
 }
-
 //----------------------------------------------------------------
-
 void task6(void)
 {
 	puts("----task6----");
@@ -191,9 +181,7 @@ void task6(void)
 		puts("Bad");
 	}
 }
-
 //----------------------------------------------------------------
-
 void task7(void)
 {
 	puts("----task7----");
@@ -230,9 +218,7 @@ void task7(void)
 		break;
 	}
 }
-
 //----------------------------------------------------------------
-
 void task8(void)
 {
 	puts("----task8----");
@@ -261,9 +247,7 @@ void task8(void)
 
 	printf("A = %lf B = %lf C = %lf\n", A, B, C);
 }
-
 //----------------------------------------------------------------
-
 void task9(void)
 {
 	puts("----task9----");
@@ -284,9 +268,7 @@ void task9(void)
 
 	(f <= pow(r, 2)) ? puts("The point lies inside the circle") : puts("The point doesn't lie inside the circle");
 }
-
 //----------------------------------------------------------------
-
 void task10(void)
 {
 	puts("----task10----");
@@ -313,9 +295,7 @@ void task10(void)
 		break;
 	}
 }
-
 //----------------------------------------------------------------
-
 void task11(void)
 {
 	puts("----task11----");
@@ -358,39 +338,37 @@ void task11(void)
 		puts("Incorrect day number");
 	}
 }
-
 //----------------------------------------------------------------
-
 void integers1_9(int number)
 {
 	switch(number)
 	{
 	case 1:
-		printf("one");
+		printf("one ");
 		break;
 	case 2:
-		printf("two");
+		printf("two ");
 		break;
 	case 3:
-		printf("three");
+		printf("three ");
 		break;
 	case 4:
-		printf("four");
+		printf("four ");
 		break;
 	case 5:
-		printf("five");
+		printf("five ");
 		break;
 	case 6:
-		printf("six");
+		printf("six ");
 		break;
 	case 7:
-		printf("seven");
+		printf("seven ");
 		break;
 	case 8:
-		printf("eight");
+		printf("eight ");
 		break;
 	case 9:
-		printf("nine");
+		printf("nine ");
 		break;
 	default:
 		break;
@@ -405,7 +383,7 @@ void task12(void)
 
 	while(1)
 	{
-		printf("\nEnter value: ");
+		printf("\nEnter value [100, 999]: ");
 		scanf("%d", &value);
 		hundreds = value / 100;
 		part_without_hundreds = value % 100;
@@ -413,36 +391,8 @@ void task12(void)
 		number = value % 10;
 		if(value >= 100 && value <= 999)
 		{
-			switch(hundreds)
-			{
-			case 1:
-				printf("one hundred ");
-				break;
-			case 2:
-				printf("two hundred ");
-				break;
-			case 3:
-				printf("three hundred ");
-				break;
-			case 4:
-				printf("four hundred ");
-				break;
-			case 5:
-				printf("five hundred ");
-				break;
-			case 6:
-				printf("six hundred ");
-				break;
-			case 7:
-				printf("seven hundred ");
-				break;
-			case 8:
-				printf("eight hundred ");
-				break;
-			case 9:
-				printf("nine hundred ");
-				break;
-			}
+			integers1_9(hundreds);
+			printf("hundred ");
 			if(tens >= 2){
 				switch(tens)
 				{
@@ -518,9 +468,7 @@ void task12(void)
 		}
 	}
 }
-
 //----------------------------------------------------------------
-
 void task13(void)
 {
 	puts("\n----task13----");
@@ -589,9 +537,7 @@ void task13(void)
 			printf("Repeat");
 	}
 }
-
 //----------------------------------------------------------------
-
 void variant11(void)
 {
 	puts("\n----variant11----");
@@ -605,20 +551,18 @@ void variant11(void)
 	{
 		puts("x=1/(z^2+2z)");
 		x = 1 / (pow(z, 2) + 2 * z);
-		y = (2 * pow(e, -3*x) - 4 * pow(x, 2)) / (log(abs(x)) + x);
-		printf("y = %lf", y);
 	}
 	else if(z <= 0)
 	{
 		puts("x=1-z^3");
 		x = 1 - pow(z, 3);
-		y = (2 * pow(e, -3*x) - 4 * pow(x, 2)) / (log(abs(x)) + x);
-		printf("y = %lf", y);
 	}
 	else
 	{
 		puts("Error");
 	}
+	y = (2 * pow(e, -3*x) - 4 * pow(x, 2)) / (log(abs(x)) + x);
+	printf("y = %lf", y);
 }
 
 void main(void)

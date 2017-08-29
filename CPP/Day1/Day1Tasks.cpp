@@ -2,9 +2,7 @@
 #include <conio.h>
 #include <math.h>
 #define M_PI	3.1415927
-
 //----------------------------------------------------------------
-
 void task1_circumference(void)
 {
 	printf("----Task 1----");
@@ -18,9 +16,7 @@ void task1_circumference(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task2_right_triangle(void)
 {
 	printf("----Task 2----");
@@ -39,9 +35,7 @@ void task2_right_triangle(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task3_circle(void)
 {
 	printf("----Task 3----");
@@ -58,9 +52,7 @@ void task3_circle(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task4_circle(void)
 {
 	printf("----Task 4----");
@@ -77,9 +69,7 @@ void task4_circle(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task5_coordinates_triangle(void)
 {
 	printf("----Task 5----");
@@ -111,9 +101,7 @@ void task5_coordinates_triangle(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task6_swap_numbers(void)
 {
 	printf("----Task 6----");
@@ -130,19 +118,25 @@ void task6_swap_numbers(void)
 	B = A;
 	A = C;
 	C = d;
-	
+	printf("\nA = %d, B = %d, C = %d", A, B, C);
+
+	B = B - C;
+	C = B + C;
+	B = C - B;
+	A = A - B;
+	B = A + B;
+	A = B - A;
 	printf("\nA = %d, B = %d, C = %d", A, B, C);
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task7_culculate_expression(void)
 {
 	printf("----Task 7----");
 
 	double y, x;
+	printf("\ny = 3 * x^6 - 6 * x^2 - 7");
 	printf("\nvariable x = ");
 	scanf("%lf", &x);
 
@@ -152,33 +146,30 @@ void task7_culculate_expression(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task8_sum_and_multi(void)
 {
 	printf("----Task 8----");
 
 	int x, sum, multi;
-	printf("\nåwo-digit number: ");
+	printf("\ntwo-digit number: ");
 	scanf("%d", &x);
 	
 	sum = (x % 10) + (x / 10);
-	printf("\nsum = %d", sum);
+	printf("\nsum integers = %d", sum);
 
 	multi = (x % 10) * (x / 10);
-	printf("\nMultiplication = %d", multi);
+	printf("\nMultiplication integers = %d", multi);
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task9_geometric_mean(void)
 {
 	printf("----Task 9----");
 
 	double x, y, mean_geo;
+	printf("\nG = sqrt(x * y)");
 	printf("\nPositive number x = ");
 	scanf("%lf", &x);
 	printf("Positive number y = ");
@@ -190,9 +181,7 @@ void task9_geometric_mean(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task10_linear_equation(void)
 {
 	printf("----Task 10----");
@@ -211,7 +200,9 @@ void task10_linear_equation(void)
 	printf("C2 = ");
 	scanf("%lf", &C2);
 
+	printf("\nx = (C1 * B2 - C2 * B1) / (A1 * B2 - A2 * B1)");
 	x = (C1 * B2 - C2 * B1) / (A1 * B2 - A2 * B1);
+	printf("\ny = (C2 * A1 - C1 * A2) / (A1 * B2 - A2 * B1)");
 	y = (C2 * A1 - C1 * A2) / (A1 * B2 - A2 * B1);
 
 	printf("\nx = %lf, y = %lf", x, y);
@@ -226,9 +217,7 @@ void task10_linear_equation(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task11_price_per_kilogram(void)
 {
 	printf("----Task 11----");
@@ -266,9 +255,7 @@ void task11_price_per_kilogram(void)
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task12_angles_in_radians(void) 
 {
 	printf("----Task 12----");
@@ -277,28 +264,26 @@ void task12_angles_in_radians(void)
 	printf("\nEnter alpha: ");
 	scanf("%lf", &alpha);
 
-	rad = alpha * M_PI / 180;
+	rad = alpha * (M_PI / 180);
 	
 	printf("\nAlpha in radians = %lf", rad);
 
 	printf("\n--------------\n");
 }
-
 //----------------------------------------------------------------
-
 void task_variant3(void)
 {
 	printf("----Variant 3----");
 	
-	double alpha, z1, z2;
+	double alpha, z1, z2, alpha_rad;
 	printf("\nEnter alpha: ");
 	scanf("%lf", &alpha);
-
+	alpha_rad = alpha * (M_PI / 180);
 	printf("z1 = (sin(2*alpha) + sin(5*alpha) - sin(3*alpha)) / (cos(alpha) + 1 - 2 * (sin(2*alpha))^2)");
 	printf("\nz2 = 2 * sin(alpha)\n");
 
-	z1 = (sin(2*alpha) + sin(5*alpha) - sin(3*alpha)) / (cos(alpha) + 1 - 2 * pow((sin(2*alpha)), 2));
-	z2 = 2 * sin(alpha);
+	z1 = (sin(2*alpha_rad) + sin(5*alpha_rad) - sin(3*alpha_rad)) / (cos(alpha_rad) + 1 - 2 * pow((sin(2*alpha_rad)), 2));
+	z2 = 2 * sin(alpha_rad);
 
 	printf("\nz1 = %lf", z1);
 	printf("\nz2 = %lf", z2);

@@ -11,6 +11,7 @@ void Set_number(int&x)
 //----------------------------------------------------------------
 int Get_max(int,int,int);
 int Get_min(int,int,int);
+
 void task1(void)	
 {
 	puts("\n----task1----");
@@ -47,6 +48,7 @@ int Get_min(int x,int y,int z)
 }
 //----------------------------------------------------------------
 int Get_factorial(int);
+
 void task2(void)
 {
 	puts("\n----task2----");
@@ -79,10 +81,503 @@ int Get_factorial(int x)
 	}
 	return fact;
 }
+//----------------------------------------------------------------
+void Print_equation(int,int,int);
+int Consider_discrim(int&,int&,int&);
+void Consider_roots(int,int,int);
+
+void task3(void)
+{
+	puts("\n----task3----");
+
+	int a,b,c,D;
+	D = Consider_discrim(a,b,c);
+	printf("\nD=%d", D);
+	Print_equation(a,b,c);
+	Consider_roots(a,b,D);
+}
+void Print_equation(int a,int b,int c)
+{
+	printf("\n%d*x^2+%d*x+(%d)=0",a,b,c);
+}
+int Consider_discrim(int&a,int&b,int&c)
+{
+	puts("D=b^2-4*a*c");
+	printf("a=");
+	Set_number(a);
+	printf("b=");
+	Set_number(b);
+	printf("c=");
+	Set_number(c);
+	return pow((double)b,2) - 4 * a * c;
+}
+void Consider_roots(int a,int b,int D)
+{
+	if(D < 0)
+	{
+		puts("\nNot roots");
+	}
+	else if(!D)
+	{
+		printf("\nx = -b/2a = %lf",(-(b) / 2 * a));
+	}
+	else
+	{
+		printf("\nx1 = (-b+sqrt(D))/2a = %lf",((-b + sqrt((double)D)) / 2 * a));
+		printf("\nx2 = (-b-sqrt(D))/2a = %lf",((-b - sqrt((double)D)) / 2 * a));
+	}
+}
+//----------------------------------------------------------------
+double Get_answer(int,int);
+
+void task4(void)
+{
+	puts("\n----task4----");
+
+	int n,x;
+	double a;
+	printf("Enter variable x = ");
+	Set_number(x);
+	printf("Enter power n = ");
+	Set_number(n);
+	a = Get_answer(n,x);
+	printf("a^n = %.0lf",a);
+}
+double Get_answer(int n,int x)
+{
+	return pow((double)x,n);
+}
+//----------------------------------------------------------------
+double Get_division(int,int);
+
+void task5(void)
+{
+	puts("\n----task5----");
+
+	int x,y;
+	double div;
+	printf("Enter x = ");
+	Set_number(x);
+	printf("Enter y = ");
+	Set_number(y);
+
+	div = Get_division(x,y);
+	printf("Division x/y: %lf",div);
+}
+double Get_division(int x,int y)
+{
+	if(!y)
+	{
+		x = 0;
+		++y;
+	}
+	return x / (double)y;
+}
+//----------------------------------------------------------------
+void Check_for_simple(int);
+void Print_simple(int,int);
+
+void task6(void)
+{
+	puts("\n----task6----");
+
+	int x;
+	printf("Enter x = ");
+	Set_number(x);
+
+	Check_for_simple(x);
+	Print_simple(1,1000);
+}
+void Check_for_simple(int x)
+{
+	int b = 0;
+	for(int i = 1; i <= x; ++i)
+	{
+		if(!((x) % i))
+		{
+			++b;
+		}
+	}
+	b == 2 ? puts("Simple number") : puts("Not simple number");
+}
+void Print_simple(int x,int y)
+{
+	do
+	{
+		int b = 0;
+		int i = 1;
+		for(i; i <= x; ++i)
+		{
+			if(!((x) % i))
+			{
+				++b;
+			}
+		}
+		if(b == 2)
+		{
+			printf("%d ",x);
+		}
+		++x;
+	}
+	while(x < y); 
+}
+//----------------------------------------------------------------
+void Check_for_perfect(int);
+void Print_perfect(int);
+
+void task7(void)
+{
+	puts("\n----task7----");
+
+	int x;
+	printf("Enter x = ");
+	Set_number(x);
+	
+	Check_for_perfect(x);
+	Print_perfect(1000);
+}
+void Check_for_perfect(int x)
+{
+	int sum = 0;
+	bool b = true;
+	for(int i = 1; i <= x/2; ++i)
+	{
+		if(!(x % i))
+		{
+			sum += i;
+		}
+	}
+	if(sum == x)
+		{
+			b = false;
+		}
+	!b ? printf("Perfect number\n") : printf("Not perfect number\n");
+}
+void Print_perfect(int x)
+{
+	int n = 2;
+	int sum;
+	int i;
+	do
+	{
+		sum = 1;
+		i = 2;
+		for(i; i <= n/2; ++i)
+		{
+			if(!(n % i))
+			{
+				sum += i;
+			}
+		}
+		if(sum == n)
+		{
+			printf("%d ",n);
+		}
+		++n;
+	}
+	while(n <= x / 2);
+}
+//----------------------------------------------------------------
+void Swap(int&);
+
+void task8(void)
+{
+	puts("\n----task8----");
+
+	int x;	
+	printf("Enter x (_ _ _ ...) = ");
+	Set_number(x);
+
+	Swap(x);
+	printf("%d",x);
+}
+void Swap(int&x)
+{
+	int x_swap = 0,num;
+	for(int i = 10, n = 0; pow((double)i,n) <= x; ++n)
+	{
+		num = (int)(x / pow((double)i,n)) % i;
+		x_swap = x_swap * 10 + num;
+	}
+	x = x_swap;
+}
+//----------------------------------------------------------------
+void Set_variables(int*,double*);
+
+void task9(void)
+{
+	puts("\n----task9----");
+
+	int num;
+	double var;
+
+	Set_variables(&num,&var);
+
+	printf("Integer: %d",num);
+	printf("\nDouble: %lf",var);
+}
+void Set_variables(int *num,double *var)
+{
+	printf("Enter integer: ");
+	scanf("%d",num);
+	fflush(stdin);
+	printf("Enter double: ");
+	scanf("%lf",var);
+	fflush(stdin);
+}
+//----------------------------------------------------------------
+void Function(int&,int&,int&);
+
+void task10(void)
+{
+	puts("\n----task10----");
+	
+	int a,b,c;	
+	printf("Enter a = ");
+	Set_number(a);
+	printf("Enter b = ");
+	Set_number(b);
+	printf("Enter c = ");
+	Set_number(c);
+
+	Function(a,b,c);
+	printf("a = a+b+c-(a*a) = %d",a);
+	printf("\nb = a*a+b*b-c*c = %d",b);
+	printf("\nc = a*b*c = %d",c);
+}
+void Function(int&a,int&b,int&c)
+{
+	int a1,b1,c1;
+	a1 = a+b+c-(a*a);
+	b1 = a*a+b*b-c*c;
+	c1 = a*b*c;
+	a = a1;
+	b = b1;
+	c = c1;
+}
+//----------------------------------------------------------------
+void Swap_numbers(int&,int&);
+
+void task11(void)
+{
+	puts("\n----task11----");
+
+	int x,y;
+	printf("Enter x = ");
+	Set_number(x);
+	printf("Enter y = ");
+	Set_number(y);
+
+	Swap_numbers(x,y);
+
+	printf("x = %d, y = %d",x,y);
+}
+void Swap_numbers(int&x,int&y)
+{
+	x = x - y;
+	y = x + y;
+	x = y - x;
+}
+//----------------------------------------------------------------
+void Print_fibonacci(int,unsigned long int,unsigned long int,unsigned long int);
+
+void task12(void)
+{
+	puts("\n----task12----");
+
+	Print_fibonacci(0,0,0,1);
+}
+void Print_fibonacci(int n,unsigned long int fib,unsigned long int first,unsigned long int second)
+{
+	if(n <= 1)
+	{
+		fib = n;
+	}
+	else
+	{
+		fib = first + second;
+		first = second;
+		second = fib;
+	}
+	printf("%ld ",fib);
+	if(n <= 50)
+	{
+		Print_fibonacci(++n,fib,first,second);
+	}
+}
+//----------------------------------------------------------------
+int Consider_sum_num(int);
+
+void task13(void)
+{
+	puts("\n----task13----");
+
+	int num;
+	printf("\nEnter number: ");
+	Set_number(num);
+
+	num = Consider_sum_num(num);
+	printf("Sum num: %d",num);
+}
+int Consider_sum_num(int num)
+{
+	static int x = num,n = 0;
+	static int x_swap = 0,i = 10;
+	
+	n = num % i;
+	x_swap = x_swap * 10 + n;
+	
+	return x_swap < x ? Consider_sum_num(num / 10) : x_swap;
+}
+//----------------------------------------------------------------
+int Max_common_divider(int,int);
+
+void task14(void)
+{
+	puts("\n----task14----");
+
+	int x,y,div;
+	printf("\nEnter x: ");
+	Set_number(x);
+	printf("\nEnter y: ");
+	Set_number(y);
+
+	div = Max_common_divider(x,y);
+
+	printf("Max common divider = %d",div);
+}
+int Max_common_divider(int x,int y)
+{
+	static int i = 1, div = 0;
+	
+	if(!(x % i) && !(y % i))
+	{
+		div = i;
+	}
+	++i;
+	return i <= (x <= y ? x : y) ? Max_common_divider(x,y) : div;
+}	
+//----------------------------------------------------------------
+void Game_guess_number(int,int);
+void Print_info(int,int);
+void Repeat_input(int,int,int&);
+
+void task15(void)
+{
+	puts("\n----task15----");
+
+	int a,b;
+	printf("Start number: ");
+	Set_number(a);
+	printf("End number: ");
+	Set_number(b);
+
+	Game_guess_number(a,b);
+}
+void Game_guess_number(int a,int b)
+{
+	int num = a + rand() % (b - a +1);
+	printf("\n%d",num);
+	int my_num;
+	Print_info(a,b);
+	Set_number(my_num);
+	while(num != my_num)
+	{
+		if(my_num > num)
+		{
+			b = (my_num >= b) ? b : my_num;
+			Repeat_input(a,b,my_num);
+		}
+		else
+		{
+			a = (my_num <= a) ? a : my_num;
+			Repeat_input(a,b,my_num);
+		}
+	}
+	printf("\nYou Win!!!");
+}
+void Print_info(int a,int b)
+{	
+	printf("\nEnter number [%d, %d]: ",a,b);
+}
+void Repeat_input(int a,int b,int&my_num)
+{
+	Print_info(a,b);
+	Set_number(my_num);
+}
+//----------------------------------------------------------------
+void Check_table_multi();
+void Print_table_multi();
+
+void task16(void)
+{
+	puts("\n----task16----");
+
+	Check_table_multi();
+}
+void Check_table_multi()
+{
+	int x,y,multi,my_multi,n = 1;
+	x = 1 + rand() % (9 - 1 + 1);
+	y = 1 + rand() % (9 - 1 + 1);
+	multi = x * y;
+	do
+	{		
+		printf("How much %d * %d: ",x,y);
+		Set_number(my_multi);
+		if(my_multi == multi)
+		{
+			printf("Right!");
+			break;
+		}
+		else
+		{
+			if(n == 3)
+			{
+				Print_table_multi();
+			}
+			else
+			{
+				printf("Try again\n");
+			}
+		}
+		++n;
+	}
+	while(true);
+}
+void Print_table_multi()
+{
+	printf("      1   2   3   4   5   6   7   8   9\n\n");
+	for(int i = 1; i <=9; ++i)
+	{
+		printf("%-3d ",i);
+		for(int j = 1; j <= 9; ++j)
+		{
+			printf("%3d ",i*j);
+		}
+		printf("\n");
+	}
+}
 void main(void)
 {
 	task1();
 	task2();
+	task3();
+	task4();
+	task5();
+	task6();
+	task7();
+	task8();
+	task9();
+	task10();
+	task11();
+	task12();
+	task13();
+	task14();
+	task15();
+	task16();
+
+	printf("\nPress any key to exit");
 
 	_getch();
 }

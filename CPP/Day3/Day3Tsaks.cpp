@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <conio.h>
-
 //----------------------------------------------------------------
-
 double get_pay(double hour_rate, double work_hour)
 {
 	double recycling;
@@ -12,7 +10,6 @@ double get_pay(double hour_rate, double work_hour)
 	//если меньше 40 часов, то отнимет по стандартному тарифу
 	return hour_rate * 40 + ((recycling > 0) ? 1.5 * recycling * hour_rate : recycling * hour_rate);
 }
-
 void task13(void)
 {
 	puts("\n----task13----");
@@ -42,9 +39,7 @@ void task13(void)
 	}
 	while(sym != '-');
 }
-
 //----------------------------------------------------------------
-
 void task12(void)
 {
 	puts("\n----task12----");
@@ -64,9 +59,7 @@ void task12(void)
 	}
 	printf("\nnumber = %d, sum = %d", i, sum);//Вывести наименьшее из целых чисел K, для которых сумма 1+2+…+K будет больше или равна N, и саму эту сумму.
 }
-
 //----------------------------------------------------------------
-
 double enter_number()
 {
 	double num;
@@ -74,7 +67,6 @@ double enter_number()
 	scanf("%lf", &num);
 	return num;
 }
-
 void task11(void)
 {
 	puts("\n----task11----");
@@ -87,7 +79,7 @@ void task11(void)
 	total = num;
 	do
 	{
-		printf("symbol(+-*/): ");
+		printf("symbol(+-*/=): ");
 		scanf("%c", &sym);//ввод симвоа для расчета
 		fflush(stdin);
 
@@ -106,19 +98,16 @@ void task11(void)
 			total /= enter_number();
 			break;
 		case '=':
-			goto lbl;//выход из switch
+			break;
 		default:
 			break;
 		}
 	}
 	while(sym != '=');
 
-	lbl: 
 	printf("\ntotal = %lf", total);
 }
-
 //----------------------------------------------------------------
-
 void task10(void)
 {
 	puts("\n----task10----");
@@ -141,16 +130,14 @@ void task10(void)
 	printf("\nsum = %d", sum);
 	printf("\nptod = %d", prod);
 }
-
 //----------------------------------------------------------------
-
 void task9(void)
 {
 	puts("\n----task9----");
 
 	double num, min;
 
-	printf("\nSearch min.\nEnter number: ");
+	printf("\nSearch min.\nEnter quantity of numbers: ");
 	scanf("%lf", &num);//ввод числа и оно указывает на количество следующих вводимых чисел
 
 	min = num;
@@ -167,9 +154,7 @@ void task9(void)
 
 	printf("\nmin = %lf", min);
 }
-
 //----------------------------------------------------------------
-
 void task8(void)
 {
 	puts("\n----task8----");
@@ -207,9 +192,7 @@ void task8(void)
 	n--;
 	printf("\nIntroduced: %d integers,\n-10 - %d\n5 - %d\n25 - %d\n100 - %d", n, n_10, n5, n25, n100);
 }
-
 //----------------------------------------------------------------
-
 void task7(void)
 {
 	puts("\n----task7----");
@@ -230,9 +213,7 @@ void task7(void)
 
 	printf("\nProduct of even = %d, quantity of negative uneven = %d", prod_even, uneven_negat);
 }
-
 //----------------------------------------------------------------
-
 void task6(void)
 {
 	puts("\n----task6----");
@@ -256,9 +237,7 @@ void task6(void)
 		}
 	}
 }
-
 //----------------------------------------------------------------
-
 void task5(void)
 {
 	puts("\n----task5----");
@@ -266,37 +245,31 @@ void task5(void)
 	int num, i, sum;
 	bool b;
 
+	puts("Checking of perfect number");
 	do
 	{
-		printf("\nEnter number: ");
+		printf("Enter number: ");
 		scanf("%d", &num);
 		fflush(stdin);
 
 		num = (num < 0) ? -num : num;
-		b = 0;
 		sum = 1;
-		for(i = 2; i <= num / 2; ++i)
+		for(i = 2; i <= num/2; ++i)
 		{
-			if(num % 2 == 0)
+			if(!(num % i))
 			{
 				sum += i;
-				if(sum == num)
-				{
-					b = 1;
-					break;
-				}
 			}
 		}
-		if(b)
+		if(sum == num)
 		{
-			printf("%d ", sum);
+			printf("Perfect - %d ", sum);
 		}
+		puts("\nExit - enter 0");
 	}
 	while(num != 0);
 }
-
 //----------------------------------------------------------------
-
 void task4(void)
 {
 	puts("\n----task4----");
@@ -333,37 +306,32 @@ void task4(void)
 	}
 	while(numA != 0 && numB != 0);
 }
-
 //----------------------------------------------------------------
-
 void task3(void)
 {
 	puts("\n----task3----");
 
 	double n, fact = 1, sum = 0;
-	puts("Sum of factorials number");
+	puts("Sum of factorials of number");
 	printf("\nEnter number: ");
 	scanf("%lf", &n);
 	fflush(stdin);
 	
 	n = (n <= 0) ? 1 : n;
 
-	int k = 1;
-	for(int i = 1; i <= n; ++i)
+	for(int i = 1; i <= n || !n; ++i)
 	{
 		fact *= i;
 		sum += fact;
 	}
-	printf("\n%.0lf! = %.0lf Sum of factorials = %.0lf",n,fact,sum);
+	printf("\n%.0lf! = %.0lf \nSum of factorials = %.0lf",n,fact,sum);
 }
-
 //----------------------------------------------------------------
-
 void task2(void)
 {
 	puts("\n----task2----");
 
-	int x, degree;
+	int x, degree, y = 1;
 	printf("\nEnter number: ");
 	scanf("%d", &x);
 	fflush(stdin);
@@ -371,14 +339,42 @@ void task2(void)
 	scanf("%d", &degree);
 	fflush(stdin);
 
-	printf("\n%d^%d = %.0lf", x, degree, pow((double)x, degree));
+	if(!degree)
+	{
+		y = 1;
+	}
+	else
+	{
+		if(degree > 0)
+		{
+			for(int i = 1; i <= degree; ++i)
+			{
+				y *= x;
+			}
+			printf("\n%d^%d = %.0lf", x, degree, y);
+		}
+		else
+		{
+			if(!x)
+			{
+				printf("Error");
+			}
+			else
+			{
+				for(int i = 1; i <= -degree; ++i)
+				{
+					y *= x;
+				}
+				y = 1 / y;
+				printf("\n%d^%d = %.0lf", x, degree, y);
+			}
+		}
+	}
 }
-
 //----------------------------------------------------------------
-
 void task1(void)
 {
-	puts("\n----task2----");
+	puts("\n----task1----");
 
 	int num, fact = 1;
 	puts("Factorial of number");
