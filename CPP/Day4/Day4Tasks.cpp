@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <time.h>
 
 void Set_number(int&x)
 {
@@ -476,6 +477,7 @@ void task15(void)
 }
 void Game_guess_number(int a,int b)
 {
+	srand(time(NULL));
 	int num = a + rand() % (b - a +1);
 	printf("\n%d",num);
 	int my_num;
@@ -518,6 +520,7 @@ void task16(void)
 void Check_table_multi()
 {
 	int x,y,multi,my_multi,n = 1;
+	srand(time(NULL));
 	x = 1 + rand() % (9 - 1 + 1);
 	y = 1 + rand() % (9 - 1 + 1);
 	multi = x * y;

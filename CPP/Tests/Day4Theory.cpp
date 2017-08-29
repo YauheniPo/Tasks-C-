@@ -8,50 +8,69 @@
 					//[a; b]
 					//a + rand()%(b-a+1)
 
-int Set_number()
+void Set_number(int &x)
 {
-	int x;
 	scanf("%d", &x);
 	fflush(stdin);
-	return x;
 }
 
 int Find_max(int x, int y, int z)
 {
-	return x > y ? (y > z ? x : (z > x ? z : x)) : (x > z ? y : (z > y ? z : y));
+	int max = x;
+	if(max < y)
+	{
+		max = y;
+	}
+	if(max < z)
+	{
+		max = z;
+	}
+	return max;
 }
 
-void Max(void)
+void Max_number(int *x1,int *x2,int *x3,int *x4,int *x5,int *max1,int *max2, int *max3)
 {
-	int x1, x2, x3, x4, x5, max1, max2, max3, max1_2_3;
-	x1 = Set_number();
-	x2 = Set_number();
-	x3 = Set_number();
-	x4 = Set_number();
-	x5 = Set_number();
-
-	max1 = Find_max(x1, x2, x3);
-	max2 = Find_max(x2, x3, x4);
-	max3 = Find_max(x3, x4, x5);
-	max1_2_3 = Find_max(max1, max2, max3);
-
-	printf("\nmax1=%d max2=%d max3=%d MAX=%d", max1, max2, max3, max1_2_3);
-
-	_getch();
+	*max1 = Find_max(*x1, *x2, *x3);
+	*max2 = Find_max(*x2, *x3, *x4);
+	*max3 = Find_max(*x3, *x4, *x5);
 }
 
 void main(void)
 {
-	Max();
+	/*int x1, x2, x3, x4, x5, max1, max2, max3, max1_2_3;
+	printf("\nEnter number: ");
+	Set_number(x1);
+	printf("\nEnter number: ");
+	Set_number(x2);
+	printf("\nEnter number: ");
+	Set_number(x3);
+	printf("\nEnter number: ");
+	Set_number(x4);
+	printf("\nEnter number: ");
+	Set_number(x5);
 
-	double x = 67, y = 9;
-	double&lnk_y = y;
-	lnk_y++;
+	Max_number(&x1,&x2,&x3,&x4,&x5,&max1,&max2,&max3);
+	max1_2_3 = Find_max(max1, max2, max3);
+
+	printf("\nmax1=%d max2=%d max3=%d MAX=%d\n", max1, max2, max3, max1_2_3);*/
+
+
+
+	double x = 67.5, y = 3;
+	double *px = &x;
+	double *py = &y;
+	*px = px - py;
+	double &lnk_y = y;
+	printf("\n%lf",lnk_y);
+	//++lnk_y;
+	printf("\n%lf",y);
 	double *addrs_x = &x;
 	printf("\n%.2lf\n", *addrs_x);
 	*addrs_x=*addrs_x+3;
 	printf("%.2lf\n", *addrs_x);
+	printf("%d\n", addrs_x);
 	addrs_x = addrs_x - 1;
+	printf("%d\n", addrs_x);
 	printf("%.2lf\n", x);
 	printf("%.2lf\n", lnk_y);
 	addrs_x++;
@@ -60,6 +79,9 @@ void main(void)
 	lnk_y = 0;
 	printf("%.2lf\n", lnk_y);
 	printf("%.2lf\n", y);
+	
+	printf("%d\n", addrs_x);
+	
 	_getch();
 }
 
@@ -82,17 +104,25 @@ void main(void)
 ФУНКЦИИ: возвращ. тип любой кроме массива и функции, но может быть указатель на массив или ф-цию
 	-static
 СТЕК
-	аргументы, адрес возврата, локальные переменные
+	аргументы, адрес возврата, адреса вложенных кадров(локальные переменные вызывающего метода), локальные переменные, сохраненные регистры процессора
 (во всех функциях return подставляется компилятором при void, чтобы выйти с функции)
 
-УКАЗАТЕЛИ: type *name -выделяется место какой тип / *name. Указатель содержит адрес переменной сообв. типа, либо 0/NULL
+УКАЗАТЕЛИ: type *name -выделяется место как под int. Указатель содержит адрес переменной сообв. типа, либо 0/NULL
 	переменные:
 		type *name -указывае на ячейку, которая хранит значение типа type
-		int* pi -указывает на целую переменную
-		const int* pi -указывает на целую константу
-		int* const pi -указатель консанта на переменную целого типа
-		const int* const pc -указатель-константа на целую константу
-		int** a -указатель на адрес ячейки, который сам хранит адрес ячейки объекта в памяти
+		int *pi -указывает на целую переменную
+		char *pc
+		const int *pi -указывает на целую константу -запрещено переопределять константу
+		int *const pi -указатель консанта на переменную целого типа -запрещено переопределять указатель
+		const int *const pc -указатель-константа на целую константу
+		int **a -указатель на адрес ячейки, который сам хранит адрес ячейки объекта в памяти
+	sizeof(pi)==sizeof(pc)==4
+	sizeof(*pi)==sizeof(int)
+
+	char *pc=(char*)0xB800 0000;
+	int *N = NULL; int *R = 0;
+Разность указателей -это разность их значений,деленная на размер типа в байтах
+Сумма указателей нодопустима
 
 int a = 5;
 int* p = &a; -получение адреса переменной
@@ -112,15 +142,23 @@ px - 2;
 	void m(int x, int*y) {
 		*y = x + 1; }
 
-ССЫЛКИ:
+ССЫЛКИ: -должна быть сразу инициализирована и только переменной
+const -по умолчанию
 	type&name = variable
 	Должна быть проинициализирована при объявлении
 	void m(int, int&);
 	void m(int x, int&y) {
 		y = x + 1; }
 	
+VOID: -определяет адрес некоторого объекта но не содержит инф. о типе объекта
+	
+void *pv;
+sifeof(*pv)==illegal indirection
+sizeof(*(Type*)pv)==sizeof(Type)
 */
 
 //вопросы:
-// -ссылка со строкой
-// -rand()
+// -адреса вложенных кадров
+// -заполнение по строчкам или сразу, а отработка по строчкам
+// -с адресом возврата связан return или нет
+// -разность указателей
