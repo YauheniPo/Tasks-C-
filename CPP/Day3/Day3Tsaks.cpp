@@ -331,7 +331,8 @@ void task2(void)
 {
 	puts("\n----task2----");
 
-	int x, degree, y = 1;
+	int x, degree;
+	double y = 1;
 	printf("\nEnter number: ");
 	scanf("%d", &x);
 	fflush(stdin);
@@ -365,8 +366,8 @@ void task2(void)
 				{
 					y *= x;
 				}
-				y = 1 / y;
-				printf("\n%d^%d = %.0lf", x, degree, y);
+				y = 1.0 / y;
+				printf("\n%d^%d = %lf", x, degree, y);
 			}
 		}
 	}

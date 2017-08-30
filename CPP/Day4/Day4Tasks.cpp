@@ -41,11 +41,29 @@ void task1(void)
 }
 int Get_max(int x,int y,int z)
 {
-	return x > y ? (y > z ? x : (z > x ? z : x)) : (x > z ? y : (z > y ? z : y));
+	int max = x;
+	if(x < y)
+	{
+		max = y;
+	}
+	if(x < z)
+	{
+		max = z;
+	}
+	return max;
 }
 int Get_min(int x,int y,int z)
 {
-	return x < y ? (y < z ? x : (z < x ? z : x)) : (x < z ? y : (z < y ? z : y));
+	int min = x;
+	if(y < x)
+	{
+		min = y;
+	}
+	if(z < x)
+	{
+		min = z;
+	}
+	return min;
 }
 //----------------------------------------------------------------
 int Get_factorial(int);
@@ -129,24 +147,53 @@ void Consider_roots(int a,int b,int D)
 	}
 }
 //----------------------------------------------------------------
-double Get_answer(int,int);
+void Get_answer(int,int,double&);
 
 void task4(void)
 {
 	puts("\n----task4----");
 
 	int n,x;
-	double a;
+	double y = 1;
 	printf("Enter variable x = ");
 	Set_number(x);
 	printf("Enter power n = ");
 	Set_number(n);
-	a = Get_answer(n,x);
-	printf("a^n = %.0lf",a);
+	Get_answer(x,n,y);
 }
-double Get_answer(int n,int x)
+void Get_answer(int x,int degree,double&y)
 {
-	return pow((double)x,n);
+	if(!degree)
+	{
+		y = 1;
+	}
+	else
+	{
+		if(degree > 0)
+		{
+			for(int i = 1; i <= degree; ++i)
+			{
+				y *= x;
+			}
+			printf("\n%d^%d = %lf", x, degree, y);
+		}
+		else
+		{
+			if(!x)
+			{
+				printf("Error");
+			}
+			else
+			{
+				for(int i = 1; i <= -degree; ++i)
+				{
+					y *= x;
+				}
+				y = 1.0 / y;
+				printf("\n%d^%d = %lf", x, degree, y);
+			}
+		}
+	}
 }
 //----------------------------------------------------------------
 double Get_division(int,int);
@@ -192,29 +239,28 @@ void task6(void)
 void Check_for_simple(int x)
 {
 	int b = 0;
-	for(int i = 1; i <= x; ++i)
+	for(int i = 2; i <= x/2; ++i)
 	{
 		if(!((x) % i))
 		{
 			++b;
 		}
 	}
-	b == 2 ? puts("Simple number") : puts("Not simple number");
+	!b ? puts("Simple number") : puts("Not simple number");
 }
 void Print_simple(int x,int y)
 {
 	do
 	{
 		int b = 0;
-		int i = 1;
-		for(i; i <= x; ++i)
+		for(int i = 2; i <= x/2; ++i)
 		{
 			if(!((x) % i))
 			{
 				++b;
 			}
 		}
-		if(b == 2)
+		if(!b)
 		{
 			printf("%d ",x);
 		}
@@ -257,13 +303,10 @@ void Check_for_perfect(int x)
 void Print_perfect(int x)
 {
 	int n = 2;
-	int sum;
-	int i;
 	do
 	{
-		sum = 1;
-		i = 2;
-		for(i; i <= n/2; ++i)
+		int sum = 1;
+		for(int i = 2; i <= n/2; ++i)
 		{
 			if(!(n % i))
 			{
@@ -276,7 +319,7 @@ void Print_perfect(int x)
 		}
 		++n;
 	}
-	while(n <= x / 2);
+	while(n <= x);
 }
 //----------------------------------------------------------------
 void Swap(int&);
@@ -327,7 +370,7 @@ void Set_variables(int *num,double *var)
 	fflush(stdin);
 }
 //----------------------------------------------------------------
-void Function(int&,int&,int&);
+void Consider(int&,int&,int&);
 
 void task10(void)
 {
@@ -341,12 +384,12 @@ void task10(void)
 	printf("Enter c = ");
 	Set_number(c);
 
-	Function(a,b,c);
+	Consider(a,b,c);
 	printf("a = a+b+c-(a*a) = %d",a);
 	printf("\nb = a*a+b*b-c*c = %d",b);
 	printf("\nc = a*b*c = %d",c);
 }
-void Function(int&a,int&b,int&c)
+void Consider(int&a,int&b,int&c)
 {
 	int a1,b1,c1;
 	a1 = a+b+c-(a*a);
@@ -380,16 +423,19 @@ void Swap_numbers(int&x,int&y)
 	x = y - x;
 }
 //----------------------------------------------------------------
-void Print_fibonacci(int,unsigned long int,unsigned long int,unsigned long int);
+void Print_fibonacci(int);
 
 void task12(void)
 {
 	puts("\n----task12----");
 
-	Print_fibonacci(0,0,0,1);
+	int capacity = 50;
+	Print_fibonacci(capacity);
 }
-void Print_fibonacci(int n,unsigned long int fib,unsigned long int first,unsigned long int second)
+void Print_fibonacci(int cap)
 {
+	static unsigned long int fib = 0, first = 0, second = 1;
+	static int n = 0;
 	if(n <= 1)
 	{
 		fib = n;
@@ -400,10 +446,11 @@ void Print_fibonacci(int n,unsigned long int fib,unsigned long int first,unsigne
 		first = second;
 		second = fib;
 	}
-	printf("%ld ",fib);
-	if(n <= 50)
+	printf("%lu ",fib);
+	if(n <= cap)
 	{
-		Print_fibonacci(++n,fib,first,second);
+		++n;
+		Print_fibonacci(cap);
 	}
 }
 //----------------------------------------------------------------
