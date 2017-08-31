@@ -3,11 +3,17 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
 
 void Set_number(int&x)
 {
 	scanf("%d",&x);
 	fflush(stdin);
+}
+void Clear_window(void)
+{
+	system("pause");
+	system("cls");
 }
 //----------------------------------------------------------------
 int Get_max(int,int,int);
@@ -102,14 +108,25 @@ int Get_factorial(int x)
 }
 //----------------------------------------------------------------
 void Print_equation(int,int,int);
-int Consider_discrim(int&,int&,int&);
+int Consider_discrim(int,int,int);
 void Consider_roots(int,int,int);
+void Print_result_not_roots();
+void Print_result_one_root(int,int);
+void Print_result_two_roots(int,int,int);
 
 void task3(void)
 {
 	puts("\n----task3----");
 
 	int a,b,c,D;
+	double x1,x2;
+	printf("a=");
+	Set_number(a);
+	printf("b=");
+	Set_number(b);
+	printf("c=");
+	Set_number(c);
+	puts("D=b^2-4*a*c");
 	D = Consider_discrim(a,b,c);
 	printf("\nD=%d", D);
 	Print_equation(a,b,c);
@@ -119,32 +136,37 @@ void Print_equation(int a,int b,int c)
 {
 	printf("\n%d*x^2+%d*x+(%d)=0",a,b,c);
 }
-int Consider_discrim(int&a,int&b,int&c)
+int Consider_discrim(int a,int b,int c)
 {
-	puts("D=b^2-4*a*c");
-	printf("a=");
-	Set_number(a);
-	printf("b=");
-	Set_number(b);
-	printf("c=");
-	Set_number(c);
 	return pow((double)b,2) - 4 * a * c;
 }
 void Consider_roots(int a,int b,int D)
 {
 	if(D < 0)
 	{
-		puts("\nNot roots");
+		Print_result_not_roots();
 	}
 	else if(!D)
 	{
-		printf("\nx = -b/2a = %lf",(-(b) / 2 * a));
+		Print_result_one_root(a,b);
 	}
 	else
 	{
-		printf("\nx1 = (-b+sqrt(D))/2a = %lf",((-b + sqrt((double)D)) / 2 * a));
-		printf("\nx2 = (-b-sqrt(D))/2a = %lf",((-b - sqrt((double)D)) / 2 * a));
+		Print_result_two_roots(a,b,D);
 	}
+}
+void Print_result_not_roots()
+{
+	puts("\nNot roots");
+}
+void Print_result_one_root(int a,int b)
+{
+	printf("\nx = -b/2a = %lf",(-(b) / 2 * a));
+}
+void Print_result_two_roots(int a,int b,int D)
+{
+	printf("\nx1 = (-b+sqrt(D))/2a = %lf",((-b + sqrt((double)D)) / 2 * a));
+	printf("\nx2 = (-b-sqrt(D))/2a = %lf",((-b - sqrt((double)D)) / 2 * a));
 }
 //----------------------------------------------------------------
 void Get_answer(int,int,double&);
@@ -222,7 +244,7 @@ double Get_division(int x,int y)
 	return x / (double)y;
 }
 //----------------------------------------------------------------
-void Check_for_simple(int);
+int Check_for_simple(int);
 void Print_simple(int,int);
 
 void task6(void)
@@ -233,10 +255,10 @@ void task6(void)
 	printf("Enter x = ");
 	Set_number(x);
 
-	Check_for_simple(x);
+	!Check_for_simple(x) ? puts("Simple number") : puts("Not simple number");;
 	Print_simple(1,1000);
 }
-void Check_for_simple(int x)
+int Check_for_simple(int x)
 {
 	int b = 0;
 	for(int i = 2; i <= x/2; ++i)
@@ -246,7 +268,7 @@ void Check_for_simple(int x)
 			++b;
 		}
 	}
-	!b ? puts("Simple number") : puts("Not simple number");
+	return b;
 }
 void Print_simple(int x,int y)
 {
@@ -269,7 +291,7 @@ void Print_simple(int x,int y)
 	while(x < y); 
 }
 //----------------------------------------------------------------
-void Check_for_perfect(int);
+bool Check_for_perfect(int);
 void Print_perfect(int);
 
 void task7(void)
@@ -280,10 +302,10 @@ void task7(void)
 	printf("Enter x = ");
 	Set_number(x);
 	
-	Check_for_perfect(x);
+	!Check_for_perfect(x) ? printf("Perfect number\n") : printf("Not perfect number\n");
 	Print_perfect(1000);
 }
-void Check_for_perfect(int x)
+bool Check_for_perfect(int x)
 {
 	int sum = 0;
 	bool b = true;
@@ -298,7 +320,7 @@ void Check_for_perfect(int x)
 		{
 			b = false;
 		}
-	!b ? printf("Perfect number\n") : printf("Not perfect number\n");
+	return b;
 }
 void Print_perfect(int x)
 {
@@ -400,7 +422,8 @@ void Consider(int&a,int&b,int&c)
 	c = c1;
 }
 //----------------------------------------------------------------
-void Swap_numbers(int&,int&);
+void Swap_numbers_lnk(int&,int&);
+void Swap_numbers_pointer(int*,int*);
 
 void task11(void)
 {
@@ -412,25 +435,45 @@ void task11(void)
 	printf("Enter y = ");
 	Set_number(y);
 
-	Swap_numbers(x,y);
+	Swap_numbers_lnk(x,y);
 
 	printf("x = %d, y = %d",x,y);
+
+	Swap_numbers_pointer(&x,&y);
+
+	printf("\nx = %d, y = %d",x,y);
 }
-void Swap_numbers(int&x,int&y)
+void Swap_numbers_lnk(int&x,int&y)
 {
 	x = x - y;
 	y = x + y;
 	x = y - x;
 }
+void Swap_numbers_pointer(int *x,int *y)
+{
+	*x = *x - *y;
+	*y = *x + *y;
+	*x = *y - *x;
+}
 //----------------------------------------------------------------
+int Fibonacci_number(int);
 void Print_fibonacci(int);
 
 void task12(void)
 {
 	puts("\n----task12----");
 
+	int f = Fibonacci_number(7);
+	printf("\nseventh fibonacci number = %d\n",f);
+
 	int capacity = 50;
 	Print_fibonacci(capacity);
+}
+int Fibonacci_number(int x)
+{
+	if(x == 1 || !x)
+		return 1;
+	return Fibonacci_number(x-1) + Fibonacci_number(x-2);
 }
 void Print_fibonacci(int cap)
 {
@@ -490,20 +533,20 @@ void task14(void)
 	printf("\nEnter y: ");
 	Set_number(y);
 
-	div = Max_common_divider(x,y);
+	div = x <= y ? Max_common_divider(x,y) : Max_common_divider(y,x);
 
 	printf("Max common divider = %d",div);
 }
 int Max_common_divider(int x,int y)
 {
-	static int i = 1, div = 0;
+	static int i = 2, div = 1;
 	
 	if(!(x % i) && !(y % i))
 	{
 		div = i;
 	}
 	++i;
-	return i <= (x <= y ? x : y) ? Max_common_divider(x,y) : div;
+	return i <= x ? Max_common_divider(x,y) : div;
 }	
 //----------------------------------------------------------------
 void Game_guess_number(int,int);
@@ -585,11 +628,13 @@ void Check_table_multi()
 			if(n == 3)
 			{
 				Print_table_multi();
+				n = 0;
 			}
 			else
 			{
 				printf("Try again\n");
 			}
+			Clear_window();
 		}
 		++n;
 	}
@@ -597,6 +642,7 @@ void Check_table_multi()
 }
 void Print_table_multi()
 {
+	Clear_window();
 	printf("      1   2   3   4   5   6   7   8   9\n\n");
 	for(int i = 1; i <=9; ++i)
 	{
