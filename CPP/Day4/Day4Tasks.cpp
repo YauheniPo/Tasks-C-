@@ -122,6 +122,7 @@ void task3(void)
 	double x1,x2;
 	printf("a=");
 	Set_number(a);
+	if
 	printf("b=");
 	Set_number(b);
 	printf("c=");
@@ -625,10 +626,10 @@ void Check_table_multi()
 		}
 		else
 		{
-			if(n == 3)
+			if(n % 3 == 0)
 			{
 				Print_table_multi();
-				n = 0;
+				//n = 0;
 			}
 			else
 			{
@@ -656,22 +657,22 @@ void Print_table_multi()
 }
 void main(void)
 {
-	task1();
-	task2();
+	//task1();
+	//task2();
 	task3();
-	task4();
-	task5();
-	task6();
-	task7();
-	task8();
-	task9();
-	task10();
-	task11();
-	task12();
-	task13();
-	task14();
-	task15();
-	task16();
+	//task4();
+	//task5();
+	//task6();
+	//task7();
+	//task8();
+	//task9();
+	//task10();
+	//task11();
+	//task12();
+	//task13();
+	//task14();
+	//task15();
+	//task16();
 
 	printf("\nPress any key to exit");
 
