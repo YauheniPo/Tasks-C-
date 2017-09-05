@@ -87,15 +87,22 @@ printf(...,z,*p); -3 1
 #include <time.h>
 #include <stdio.h>
 
-void main()
-{
-	
-	
+double d = .5E-2;
+
+void Set_arr(int arr[][3], int N) {
+	for(int i = 0; i < N; ++i) {
+		for(int j = 0; j < 3; ++j) {
+			printf("%d", arr[i][j]);
+		}
+	}
+}
+
+void main() {
+	const int N = 2, M = 3;
+	int arr[N][M] = {{1,2,3},{4,5,6}};
+	printf("%lf", d);
+	Set_arr(arr, N);
+
 	_getch();
 	return;
 }
-
-/*
-Вопросы
-	-пример ++i --j
-*/
