@@ -7,8 +7,9 @@
 					//перед паузу или слип
 					//system("cls"); -очистка окна
 #include <windows.h>
-					//system("pause");
-					//sleep(10000);
+					//system("pause"); -задержка
+					//system("cls"); -очистка экрана
+					//sleep(10000); -задержка
 #include <time.h> //srand(time(NULL)); -текущая дата в виде целого числа
 					//[a; b]
 					//a + rand()%(b-a+1)

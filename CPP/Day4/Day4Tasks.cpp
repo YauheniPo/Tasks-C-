@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
+#include <locale.h>
 
 void Set_number(int&x)
 {
@@ -107,67 +108,93 @@ int Get_factorial(int x)
 	return fact;
 }
 //----------------------------------------------------------------
-void Print_equation(int,int,int);
 int Consider_discrim(int,int,int);
-void Consider_roots(int,int,int);
+void Consider_roots(int,int,int,double&,double&);
 void Print_result_not_roots();
-void Print_result_one_root(int,int);
-void Print_result_two_roots(int,int,int);
+void Result_two_roots(int,int,int,double&,double&);
 
 void task3(void)
 {
 	puts("\n----task3----");
 
 	int a,b,c,D;
-	double x1,x2;
+	char ch;
+	double x1 = 0, x2 = 0;
+	
+	puts("ax^2 + bx + c = 0");
 	printf("a=");
 	Set_number(a);
-	if
+	if(!a) {
+		puts("Данный ввод некорректен для решения квадратного уравнения.");
+		return;
+	}
 	printf("b=");
 	Set_number(b);
 	printf("c=");
 	Set_number(c);
-	puts("D=b^2-4*a*c");
-	D = Consider_discrim(a,b,c);
-	printf("\nD=%d", D);
-	Print_equation(a,b,c);
-	Consider_roots(a,b,D);
-}
-void Print_equation(int a,int b,int c)
-{
-	printf("\n%d*x^2+%d*x+(%d)=0",a,b,c);
+	if(b == 0) {
+		if(c == 0) {
+			puts("Данный ввод некорректен для решения квадратного уравнения.");
+			return;
+		}
+		printf("\n%dx^2+%d=0", a, c);
+	}else if(c == 0)
+		printf("\n%dx^2+%dx=0", a, b);
+	do {
+		printf("\nПродолжить решение? (y/n): ");
+		scanf("%c", &ch);
+		if(ch == 'y') {
+			if(a !=0 && b != 0 && c != 0) {
+				printf("\nD=b^2-4*a*c=%d^2-4*%d*%d", b, a, c);
+				D = Consider_discrim(a,b,c);
+				printf("\nD=%d", D);
+				Consider_roots(a,b,D,x1,x2);
+				puts("\nx = (-b+-sqrt(D))/2a = %.2lf");
+				printf("\nx1 = %.2lf", x1);
+				printf("\nx2 = %.2lf", x2);
+				break;
+			} else {
+				if(b == 0) {
+					puts("\nx^2+c=0");
+					printf("\nx=+-sqrt(%d)", c);
+					x1 = sqrt((double)c);
+					x2 = -sqrt((double)c);
+				} else {
+					puts("\nx^2+bx=0");
+					printf("\nx(%dx-%d)=0", a, b);
+					x1 = 0;
+					x2 = (double)a/b;
+				}
+				printf("\nx1 = %.2lf", x1);
+				printf("\nx2 = %.2lf", x2);
+				break;
+			}
+		}
+	} while(ch != 'n');
 }
 int Consider_discrim(int a,int b,int c)
 {
-	return pow((double)b,2) - 4 * a * c;
+	return (int)(pow((double)b,2) - 4 * a * c);
 }
-void Consider_roots(int a,int b,int D)
+void Consider_roots(int a,int b,int D,double &x1, double &x2)
 {
 	if(D < 0)
 	{
 		Print_result_not_roots();
 	}
-	else if(!D)
-	{
-		Print_result_one_root(a,b);
-	}
 	else
 	{
-		Print_result_two_roots(a,b,D);
+		Result_two_roots(a,b,D,x1,x2);
 	}
 }
 void Print_result_not_roots()
 {
-	puts("\nNot roots");
+	puts("\nНет корней.");
 }
-void Print_result_one_root(int a,int b)
+void Result_two_roots(int a,int b,int D, double &x1, double &x2)
 {
-	printf("\nx = -b/2a = %lf",(-(b) / 2 * a));
-}
-void Print_result_two_roots(int a,int b,int D)
-{
-	printf("\nx1 = (-b+sqrt(D))/2a = %lf",((-b + sqrt((double)D)) / 2 * a));
-	printf("\nx2 = (-b-sqrt(D))/2a = %lf",((-b - sqrt((double)D)) / 2 * a));
+	x1 = (-b + sqrt((double)D)) / (2 * a);
+	x2 = (-b - sqrt((double)D)) / (2 * a);
 }
 //----------------------------------------------------------------
 void Get_answer(int,int,double&);
@@ -568,7 +595,6 @@ void task15(void)
 }
 void Game_guess_number(int a,int b)
 {
-	srand(time(NULL));
 	int num = a + rand() % (b - a +1);
 	printf("\n%d",num);
 	int my_num;
@@ -611,7 +637,6 @@ void task16(void)
 void Check_table_multi()
 {
 	int x,y,multi,my_multi,n = 1;
-	srand(time(NULL));
 	x = 1 + rand() % (9 - 1 + 1);
 	y = 1 + rand() % (9 - 1 + 1);
 	multi = x * y;
@@ -655,24 +680,26 @@ void Print_table_multi()
 		printf("\n");
 	}
 }
-void main(void)
-{
-	//task1();
-	//task2();
+void main(void) {
+	setlocale(LC_ALL,"Russian"); 
+	srand(time(NULL));
+
+	task1();
+	task2();
 	task3();
-	//task4();
-	//task5();
-	//task6();
-	//task7();
-	//task8();
-	//task9();
-	//task10();
-	//task11();
-	//task12();
-	//task13();
-	//task14();
-	//task15();
-	//task16();
+	task4();
+	task5();
+	task6();
+	task7();
+	task8();
+	task9();
+	task10();
+	task11();
+	task12();
+	task13();
+	task14();
+	task15();
+	task16();
 
 	printf("\nPress any key to exit");
 

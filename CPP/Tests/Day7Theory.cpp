@@ -82,26 +82,114 @@ printf(...,z,*p); -3 1
 						 (Type **,int,int);
 */
 
+#include <stdio.h>
 #include <conio.h>
+#include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#include <stdio.h>
+#include <windows.h>
+#include <locale.h>
 
-double d = .5E-2;
+void Set_number(int&x)
+{
+	scanf("%d", &x);
+	fflush(stdin);
+}
+int Consider_discrim(int,int,int);
+void Consider_roots(int,int,int);
+void Print_result_not_roots();
+void Print_result_one_root(int,int);
+void Print_result_two_roots(int,int,int);
 
-void Set_arr(int arr[][3], int N) {
-	for(int i = 0; i < N; ++i) {
-		for(int j = 0; j < 3; ++j) {
-			printf("%d", arr[i][j]);
+void task3(void)
+{
+	puts("\n----task3----");
+
+	int a,b,c,D;
+	char ch;
+	double x1,x2;
+	
+	puts("ax^2 + bx + c = 0");
+	printf("a=");
+	Set_number(a);
+	if(!a) {
+		puts("Данный ввод некорректен для решения квадратного уравнения.");
+		return;
+	}
+	printf("b=");
+	Set_number(b);
+	printf("c=");
+	Set_number(c);
+	if(b == 0) {
+		if(c == 0) {
+			puts("Данный ввод некорректен для решения квадратного уравнения.");
+			return;
 		}
+		printf("\n%dx^2+%d=0", a, c);
+	}else if(c == 0)
+		printf("\n%dx^2+%dx=0", a, b);
+	do {
+		printf("\nПродолжить решение? (y/n): ");
+		scanf("%c", &ch);
+		if(ch == 'y') {
+			if(a !=0 && b != 0 && c != 0) {
+				printf("\nD=b^2-4*a*c=%d^2-4*%d*%d", b, a, c);
+				D = Consider_discrim(a,b,c);
+				printf("\nD=%d", D);
+				Consider_roots(a,b,D);
+				break;
+			} else {
+				if(b == 0) {
+					puts("\nx^2+c=0");
+					printf("%dx^2+%d=0", a, c);
+				} else {
+					puts("\nx^2+bx=0");
+					printf("%dx^2+%dx=0", a, b);
+				}
+				D = Consider_discrim(a,b,c);
+				Consider_roots(a,b,D);
+				break;
+			}
+		}
+	} while(ch != 'n');
+}
+int Consider_discrim(int a,int b,int c)
+{
+	return (int)(pow((double)b,2) - 4 * a * c);
+}
+void Consider_roots(int a,int b,int D)
+{
+	if(D < 0)
+	{
+		Print_result_not_roots();
+	}
+	else if(!D)
+	{
+		Print_result_one_root(a,b);
+	}
+	else
+	{
+		Print_result_two_roots(a,b,D);
 	}
 }
-
+void Print_result_not_roots()
+{
+	puts("\nНет корней.");
+}
+void Print_result_one_root(int a,int b)
+{
+	printf("\nx = -b/2a = %lf",(-(b) / 2 * a));
+}
+void Print_result_two_roots(int a,int b,int D)
+{
+	printf("\nx1 = (-b+sqrt(D))/2a = %.2lf",((-b + sqrt((double)D)) / 2 * a));
+	printf("\nx2 = (-b-sqrt(D))/2a = %.2lf",((-b - sqrt((double)D)) / 2 * a));
+}
 void main() {
-	const int N = 2, M = 3;
-	int arr[N][M] = {{1,2,3},{4,5,6}};
-	printf("%lf", d);
-	Set_arr(arr, N);
+	setlocale(LC_ALL,"Russian"); 
+	srand(time(NULL));
+
+	task3();
 
 	_getch();
 	return;
