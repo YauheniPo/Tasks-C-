@@ -5,6 +5,7 @@
 #include <time.h>
 #include <windows.h>
 #include <locale.h>
+#include <string.h>
 
 void Set_number(int&x)
 {
@@ -108,93 +109,121 @@ int Get_factorial(int x)
 	return fact;
 }
 //----------------------------------------------------------------
-int Consider_discrim(int,int,int);
-void Consider_roots(int,int,int,double&,double&);
-void Print_result_not_roots();
+int Get_discrim(int,int,int);
 void Result_two_roots(int,int,int,double&,double&);
+void Print_roots(double,double);
 
-void task3(void)
-{
+void task3(void) {
 	puts("\n----task3----");
 
 	int a,b,c,D;
 	char ch;
-	double x1 = 0, x2 = 0;
-	
-	puts("ax^2 + bx + c = 0");
-	printf("a=");
-	Set_number(a);
-	if(!a) {
-		puts("Данный ввод некорректен для решения квадратного уравнения.");
-		return;
-	}
-	printf("b=");
-	Set_number(b);
-	printf("c=");
-	Set_number(c);
-	if(b == 0) {
-		if(c == 0) {
-			puts("Данный ввод некорректен для решения квадратного уравнения.");
-			return;
-		}
-		printf("\n%dx^2+%d=0", a, c);
-	}else if(c == 0)
-		printf("\n%dx^2+%dx=0", a, b);
+	double x1, x2;
+	char str[5];
+
 	do {
-		printf("\nПродолжить решение? (y/n): ");
-		scanf("%c", &ch);
-		if(ch == 'y') {
-			if(a !=0 && b != 0 && c != 0) {
-				printf("\nD=b^2-4*a*c=%d^2-4*%d*%d", b, a, c);
-				D = Consider_discrim(a,b,c);
-				printf("\nD=%d", D);
-				Consider_roots(a,b,D,x1,x2);
-				puts("\nx = (-b+-sqrt(D))/2a = %.2lf");
-				printf("\nx1 = %.2lf", x1);
-				printf("\nx2 = %.2lf", x2);
-				break;
+		x1 = 0;
+		x2 = 0;
+		puts("ax^2 + bx + c = 0");
+		printf("a=");
+		Set_number(a);
+		if(!a) {
+			puts("Данный ввод некорректен для решения квадратного уравнения.");
+		} else {
+			printf("b=");
+			Set_number(b);
+			printf("c=");
+			Set_number(c);
+			if(b == 0 && c == 0) {
+				puts("Данный ввод некорректен для решения квадратного уравнения.");
 			} else {
-				if(b == 0) {
-					puts("\nx^2+c=0");
-					printf("\nx=+-sqrt(%d)", c);
-					x1 = sqrt((double)c);
-					x2 = -sqrt((double)c);
+				if(a == 1) {
+					printf("x^2");
 				} else {
-					puts("\nx^2+bx=0");
-					printf("\nx(%dx-%d)=0", a, b);
-					x1 = 0;
-					x2 = (double)a/b;
+					printf("%dx^2", a);
 				}
-				printf("\nx1 = %.2lf", x1);
-				printf("\nx2 = %.2lf", x2);
-				break;
+				if(!b) {
+					;
+				} else if (b == 1) {
+					printf("+x");
+				} else {
+					printf("%+dx", b);
+				}
+				if(!c) {
+					;
+				} else {
+					printf("%+d", c);
+				}
+				printf("=0");
+				do {
+					printf("\nПродолжить решение? (y/n): ");
+					scanf("%c", &ch);
+					fflush(stdin);
+					if(ch == 'y') {
+						if(a !=0 && b != 0 && c != 0) {
+							printf("\nD=b^2-4*a*c");
+							if(b == 1) {
+								printf("\nD=-4");
+							} else {
+								printf("\nD=%d^2-4", b);
+							}	
+							if(a == 1) {
+								;
+							} else if(a < 0){
+								printf("*(%d)", a);
+							} else {
+								printf("*%d", a);
+							}
+							if(c == 1) {
+								;
+							} else if(c < 0){
+								printf("*(%d)", c);
+							} else {
+								printf("*%d", c);
+							}
+							D = Get_discrim(a,b,c);
+							printf("\nD=%d", D);
+							if(D < 0) {
+								puts("\nНет корней.");
+								break;
+							}
+							Result_two_roots(a,b,D,x1,x2);
+							puts("\nx = (-b+-sqrt(D))/2a = %.2lf");
+							Print_roots(x1,x2);
+							break;
+						} else {
+							if(b == 0) {
+								printf("\nx^2=%d", (0-c));
+								printf("\nx=+-sqrt(%d)", (0-c));
+								x1 = sqrt((double)(-c));
+								x2 = -sqrt((double)(-c));
+							} else {
+								puts("\nx^2+bx=0");
+								printf("\nx(%dx%+d)=0", a, b);
+								x1 = 0;
+								x2 = (double)a/b;
+							}
+							Print_roots(x1,x2);
+							break;
+						}
+					}			
+				} while(ch != 'n');
 			}
 		}
-	} while(ch != 'n');
+		puts("\nДля повтора нажмите любую клавишу, для выхода - exit");
+		gets(str);
+	} while (strcmp(str, "exit"));
 }
-int Consider_discrim(int a,int b,int c)
-{
+int Get_discrim(int a,int b,int c) {
 	return (int)(pow((double)b,2) - 4 * a * c);
 }
-void Consider_roots(int a,int b,int D,double &x1, double &x2)
-{
-	if(D < 0)
-	{
-		Print_result_not_roots();
-	}
-	else
-	{
-		Result_two_roots(a,b,D,x1,x2);
-	}
-}
-void Print_result_not_roots()
-{
-	puts("\nНет корней.");
-}
-void Result_two_roots(int a,int b,int D, double &x1, double &x2)
-{
+void Result_two_roots(int a,int b,int D, double &x1, double &x2) {
 	x1 = (-b + sqrt((double)D)) / (2 * a);
 	x2 = (-b - sqrt((double)D)) / (2 * a);
+}
+void Print_roots(double x1, double x2) {
+	printf("\nx1 = %.2lf", x1);
+	printf("\nx2 = %.2lf", x2);
 }
 //----------------------------------------------------------------
 void Get_answer(int,int,double&);
