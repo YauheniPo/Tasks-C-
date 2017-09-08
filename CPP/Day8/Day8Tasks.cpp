@@ -5,6 +5,82 @@
 #include <malloc.h>
 #include <math.h>
 
+//----------------------------------------------------------------
+int Get_int_to_str(char *atr, int n_start, int n_end);
+void Cut_str(char*, int, int, char*);
+char* Get_str_month(int);
+void task16(void) {
+	puts("\n------------task16------------");
+
+	const int N = 11;
+	char data[N] = {0};
+	int len;
+	int day = 0, month = 0, year = 0;
+	char d[3], m[3], y[5];
+	char text[100] = "\0";
+	
+	puts("Enter data _ _/_ _/_ _ _ _: ");
+	gets(data);
+	len = strlen(data);
+	if(len != N-1) {
+		puts("\nInvalid input.");
+		return;
+	}
+	day = Get_int_to_str(data, 0, 1);
+	month = Get_int_to_str(data, 3, 4);
+	year = Get_int_to_str(data, 6, 9);
+	if(day < 1 && day > 31 && month < 1 && month > 12) {
+		puts("\nInvalid input.");
+		return;
+	}
+
+	Cut_str(data, 0, 1, d);
+	Cut_str(data, 6, N-1, y);
+	strcat(strcat(strcat(strcat(strcat(strcat(text, d), " "), Get_str_month(month)), " "), y), "\0");
+	puts(text);
+}
+int Get_int_to_str(char *str, int start, int end) {
+	int num = 0, k = 10;
+	for(int i = start, j = 0; i <= end; ++i, ++j) {
+		num = num * k + (str[i] - 48);
+	}
+	return num;
+}
+void Cut_str(char *str, int start, int end, char *s) {
+	for(int i = 0, j = start; j <= end; ++i, ++j) {
+		s[i] = str[j];
+	}
+	s[end - start + 1] = '\0';
+}
+char* Get_str_month(int month) {
+	switch(month) {
+	case 1:
+		return "January";
+	case 2:
+		return "February";
+	case 3:
+		return "March";
+	case 4:
+		return "April";
+	case 5:
+		return "May";
+	case 6:
+		return "June";
+	case 7:
+		return "July";
+	case 8:
+		return "August";
+	case 9:
+		return "September";
+	case 10:
+		return "October";
+	case 11:
+		return "November";
+	case 12:
+		return "December";
+	}
+}
+//----------------------------------------------------------------
 char* Integers1_9(int);
 char* Tens(int);
 char* From_20_to_10(int);
@@ -356,6 +432,7 @@ void task20(void) {
 			return;
 		}
 		arr_int[i] = (int*)malloc(len * sizeof(int));
+		//printf("%d", sizeof(arr_int[i])/sizeof(int));
 		if(!arr_int[i]) {
 			puts("Error");
 			exit(1);
@@ -550,6 +627,7 @@ bool Is_palindrome(char *str, int len) {
 void main(void) {
 	srand(time(NULL));
 	
+	task16();
 	task17();
 	task18();
 	task19();
