@@ -66,7 +66,7 @@ void Print_array_multi(int **arr, int N, int M) {
 		for(int j = 0; j < M; ++j) {
 			printf("[%d][%d] = %-4d ", i, j, *(*(arr + i) + j));
 		}
-		printf("\n\n");
+		printf("\n\n\n");
 	}
 }
 int Get_max_element_position(int arr[], int N) {

@@ -91,6 +91,20 @@ printf(...,z,*p); -3 1
 #include <locale.h>
 
 void main() {
+	char str[100];
+	*str = 'q';
+	*(str + 1) = '\0';
+	puts(str);
+	char ch = '2';
+	int n = ch - '0';
+	printf("%d", n);
+	*(str + 1) = 'w';
+	puts(str);
+	
+	char *s;
+	s = gets(str);
+	puts(s);
+	puts(str);
 	
 
 	_getch();
