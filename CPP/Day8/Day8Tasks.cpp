@@ -6,6 +6,407 @@
 #include <math.h>
 
 //----------------------------------------------------------------
+int Count_char(char*, int, char);
+void Change_chars(char*, int);
+void task4(void) {
+	puts("\n------------task4------------");
+
+	const int N = 101;
+	char text[N];
+	int len, k = 0;
+	char ch;
+
+	puts("Enter text: ");
+	gets(text);
+	len = strlen(text);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+
+	puts("Enter character: ");
+	scanf("%c", &ch);
+
+	k = Count_char(text, len, ch);
+	Change_chars(text, len);
+	printf("\n'%c' - %d\n", ch, k);
+	puts(text);
+}
+int Count_char(char *text, int len, char ch) {
+	int k = 0, i = 0;
+	while(i < len) {
+		if(text[i] == ch || text[i] == (ch-32)) {
+			++k;
+		}
+		++i;
+	}
+	return k;
+}
+void Change_chars(char *text, int len) {
+	int i = 0, j = 0, m = 0;
+	char buf;
+	while(i < len) {
+		if(text[i] != ' ' && !(m%2)) {
+			++m;
+			j = i;
+			buf = text[i];
+		}
+		if(text[i+1] == ' ') {
+			--m;
+			text[j] = text[i];
+			text[i] = buf;
+		}
+		++i;
+	}
+}
+//----------------------------------------------------------------
+int Count_words(char*, int);
+void task5(void) {
+	puts("\n------------task5------------");
+
+	const int N = 101;
+	char text[N];
+	int len, k = 0;
+
+	puts("Enter text: ");
+	gets(text);
+	len = strlen(text);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	k = Count_words(text, len);
+	printf("\n%d words", k);
+}
+int Count_words(char *text, int len) {
+	int k = 0, i = 0;
+	if(text[i] != ' ' && text[i] != '\0') {
+		++k;
+		++i;
+	}
+	while(i < len-1) {
+		if(text[i] == ' ') {
+			if(text[i+1] != ' ') {
+				++k;
+			}
+		}
+		++i;
+	}
+	return k;
+}
+//----------------------------------------------------------------
+char* Prisv(char *, char *);
+void task6(void) {
+	puts("\n------------task6------------");
+
+	const int N = 11, M = 11;
+	char str1[N], str2[M];
+	int len1, len2;
+
+	puts("Enter string 1: ");
+	gets(str1);
+	len1 = strlen(str1);
+	if(len1 > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	puts("Enter string 2: ");
+	gets(str2);
+	len2 = strlen(str2);
+	if(len2 > M-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	Prisv(str1, str2);
+	puts(str1);
+}
+char* Prisv(char *str1, char *str2) {
+	int len1 = strlen(str1);
+	int len2 = strlen(str2);
+	for(int i = 0; i <= len2; ++i) {
+		str1[i] = str2[i];
+	}
+	return str1;
+}
+//----------------------------------------------------------------
+char* Dobav(char *, char *);
+void task7(void) {
+	puts("\n------------task7------------");
+
+	const int N = 101;
+	char str1[N];
+	char str2[20];
+	int len1, len2;
+
+	puts("Enter string 1: ");
+	gets(str1);
+	len1 = strlen(str1);
+	if(len1 > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	puts("Enter string 2: ");
+	gets(str2);
+	len2 = strlen(str2);
+	if(len2 > 20-1 && len1+len2 > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	Dobav(str1, str2);
+	puts(str1);
+}
+char* Dobav(char *str1, char *str2) {
+	int len1 = strlen(str1);
+	int len2 = strlen(str2);
+	for(int i = len1, j = 0; j <= len2; ++j, ++i) {
+		str1[i] = str2[j];
+	}
+	return str1;
+}
+//----------------------------------------------------------------
+int Dlina(char*);
+void task8(void) {
+	puts("\n------------task8------------");
+
+	const int N = 11;
+	char str[N];
+	int len;
+
+	puts("Enter string (max 10): ");
+	gets(str);
+	len = Dlina(str);
+	if(len > N-1){
+		puts("\nInvalid input.");
+	}
+	printf("\nlength = %d", len);
+}
+int Dlina(char *str) {
+	int i = 0;
+	while(str[i]) {
+		++i;
+	}
+	return i;
+}
+//----------------------------------------------------------------
+int Srav(char*, char*);
+void task9(void) {
+	puts("\n------------task9------------");
+
+	char x[20], y[20];
+	int len;
+	int srav; 
+
+	puts("Enter first string: ");
+	gets(x);
+	len = strlen(x);
+	if(len > 20-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	puts("Enter second string: ");
+	gets(y);
+	len = strlen(y);
+	if(len > 20-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	srav = Srav(x, y);
+	printf("\n1 - str1>str2, 0 - str=str2, -1 - str1<str2\nTotal: %d", srav);
+}
+int Srav(char *str1, char *str2) {
+	int len1 = strlen(str1);
+	int len2 = strlen(str2);
+	int i = 0, k = 0;
+	while(str1[i] && str2[i]) {
+		if(str1[i] > str2[i]) {
+			k += 2;
+			return 1;
+		} else if(str1[i] < str2[i]) {
+			++k;
+			return -1;
+		}
+		++i;
+	}
+	if(len1 == len2) {
+		return k;
+	}
+	if(i == len1) {
+		return 1;
+	} else {
+		return -1;
+	}
+}
+//----------------------------------------------------------------
+void task10(void) {
+	puts("\n------------task10------------");
+
+	char x[20], y[20], z[20], t[80] = "\0";
+	int len;
+	puts("Enter name: ");
+	gets(x);
+	len = strlen(x);
+	if(len > 20-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	puts("Enter surname: ");
+	gets(y);
+	len = strlen(y);
+	if(len > 20-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	puts("Enter patronymic: ");
+	gets(z);
+	len = strlen(z);
+	if(len > 20-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	strcat(strcat(strcat(strcat(strcat(t, x), " "), y), " "), z);
+	puts(t);
+}
+//----------------------------------------------------------------
+void Delete_first(char*, int);
+void Delete_last(char*, int);
+void Delete_center(char*, int);
+void task11(void) {
+	puts("\n------------task11------------");
+
+	const int N = 101;
+	char str[N];
+	int len;
+
+	puts("Enter string: ");
+	gets(str);
+	len = strlen(str);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	if(len < 10) {
+		Delete_first(str, len);
+	} else if(len > 10) {
+		Delete_last(str, len);
+	} else {
+		Delete_center(str, len);
+	}
+	puts(str);
+}
+void Delete_first(char *str, int n) {
+	for(int i = 2, j = 0; i <= n; ++i, ++j) {
+		str[j] = str[i];
+	}
+}
+void Delete_last(char *str, int n) {
+	str[n-2] = str[n];
+}
+void Delete_center(char *str, int n) {
+	for(int i = n/2; i < n; ++i) {
+		str[i] = str[i+1];
+	}
+}
+//----------------------------------------------------------------
+void task12(void) {
+	puts("\n------------task12------------");
+
+	const int N = 101;
+	char str[N];
+	char word[N];
+	char *ptr;
+	int len_str, len_word, k = 0;
+
+	puts("Enter string: ");
+	gets(str);
+	len_str = strlen(str);
+	puts("Enter word: ");
+	gets(word);
+	len_word = strlen(word);
+	if(len_str > N-1 && len_str < len_word){
+		puts("\nInvalid input.");
+		return;
+	}
+	ptr = strstr(str, word);
+	while(ptr) {
+		++k;
+		ptr = strstr(ptr += len_word, word);
+	}
+	printf("n = %d", k);
+}
+//----------------------------------------------------------------
+void Print_even(char*, int);
+void task13(void) {
+	puts("\n------------task13------------");
+
+	const int N = 101;
+	char str[N];
+	int len;
+
+	puts("Enter number: ");
+	gets(str);
+	len = strlen(str);
+	if(len != N-1) {
+		puts("\nInvalid input.");
+		return;
+	}
+	Print_even(str, len);
+}
+void Print_even(char *str, int n) {
+	for(int i = 0; i < n; ++i) {
+		if(!(str[i] % 2)) {
+			printf("%d  ", (str[i]-48));
+		}
+	}
+}
+//----------------------------------------------------------------
+void Prod_number(char *, int, int&);
+void task14(void) {
+	puts("\n------------task14------------");
+
+	const int N = 101;
+	char str[N];
+	int len, num = 1;
+
+	puts("Enter number: ");
+	gets(str);
+	len = strlen(str);
+	if(len != N-1) {
+		puts("\nInvalid input.");
+		return;
+	}
+
+	Prod_number(str, len, num);
+	printf("\n%d", num);
+}
+void Prod_number(char *str, int n, int &num) {
+	for(int i = 0; i < n; ++i) {
+		num *= (str[i] - 48);
+	}
+}
+//----------------------------------------------------------------
+void Print_num(char*, int);
+void task15(void) {
+	puts("\n------------task15------------");
+
+	const int N = 101;
+	char str[N];
+	int len;
+
+	puts("Enter number: ");
+	gets(str);
+	len = strlen(str);
+	if(len != N-1) {
+		puts("\nInvalid input.");
+		return;
+	}
+	Print_num(str, len);
+}
+void Print_num(char *str, int n) {
+	for(int i = 0; i < n; ++i) {
+		printf("%d  ", (str[i]-48));
+	}
+}
+//----------------------------------------------------------------
 int Get_int_to_str(char *atr, int n_start, int n_end);
 void Cut_str(char*, int, int, char*);
 char* Get_str_month(int);
@@ -216,146 +617,6 @@ char* From_20_to_10(int number) {
 		return "";
 	}
 }
-
-/*
-void integers1_9(int);
-void task17(void) {
-	puts("----task17----");
-
-	const int N = 5;
-	char str[N];
-
-	int value, thousands, hundreds, tens, number, part_without_hundreds;
-
-	while(1) {
-		value = 0;
-		printf("\nEnter number [1000-9999]: ");
-		gets(str);
-		int len = strlen(str);
-		if(len > N - 1) {
-			puts("\nInvalid input.");
-			return;
-		}
-		for(int i = 0; i < len; ++i) {
-			if(str[i] < 48 || str[i] > 57) {
-				puts("\nInvalid input.");
-				return;
-			}
-			value = value * 10 + (str[i] - 48);
-		}
-		thousands = value / 1000;
-		hundreds = (value % 1000) / 100;
-		part_without_hundreds = value % 100;
-		tens = part_without_hundreds / 10;
-		number = value % 10;
-		if(value >= 1000 && value <= 9999) {
-			integers1_9(thousands);
-			printf("thousand ");
-			integers1_9(hundreds);
-			printf("hundred ");
-			if(tens >= 2){
-				switch(tens) {
-				case 2:
-					printf("twenty ");
-					break;
-				case 3:
-					printf("thirty ");
-					break;
-				case 4:
-					printf("forty ");
-					break;
-				case 5:
-					printf("fifty ");
-					break;
-				case 6:
-					printf("sixty ");
-					break;
-				case 7:
-					printf("seventy ");
-					break;
-				case 8:
-					printf("eighty ");
-					break;
-				case 9:
-					printf("ninety ");
-					break;
-				}
-				integers1_9(number);
-			} else {
-				integers1_9(part_without_hundreds);
-				switch(part_without_hundreds) {
-				case 10:
-					printf("ten");
-					break;
-				case 11:
-					printf("eleven");
-					break;
-				case 12:
-					printf("twelve");
-					break;
-				case 13:
-					printf("thirteen");
-					break;
-				case 14:
-					printf("fourteen");
-					break;
-				case 15:
-					printf("fifteen");
-					break;
-				case 16:
-					printf("sixteen");
-					break;
-				case 17:
-					printf("seventeen");
-					break;
-				case 18:
-					printf("eighteen");
-					break;
-				case 19:
-					printf("nineteen");
-					break;
-				}
-			}
-		} else {
-			puts("Incorrect value");
-			break;
-		}
-	}
-}
-void integers1_9(int number) {
-	switch(number) {
-	case 1:
-		printf("one ");
-		break;
-	case 2:
-		printf("two ");
-		break;
-	case 3:
-		printf("three ");
-		break;
-	case 4:
-		printf("four ");
-		break;
-	case 5:
-		printf("five ");
-		break;
-	case 6:
-		printf("six ");
-		break;
-	case 7:
-		printf("seven ");
-		break;
-	case 8:
-		printf("eight ");
-		break;
-	case 9:
-		printf("nine ");
-		break;
-	default:
-		break;
-	}
-}
-*/
 //----------------------------------------------------------------
 void task18(void) {
 	puts("\n------------task18------------");
@@ -432,7 +693,6 @@ void task20(void) {
 			return;
 		}
 		arr_int[i] = (int*)malloc(len * sizeof(int));
-		//printf("%d", sizeof(arr_int[i])/sizeof(int));
 		if(!arr_int[i]) {
 			puts("Error");
 			exit(1);
@@ -627,6 +887,18 @@ bool Is_palindrome(char *str, int len) {
 void main(void) {
 	srand(time(NULL));
 	
+	task4();
+	task5();
+	task6();
+	task7();
+	task8();
+	task9();
+	task10();
+	task11();
+	task12();
+	task13();
+	task14();
+	task15();
 	task16();
 	task17();
 	task18();
@@ -639,7 +911,3 @@ void main(void) {
 	_getch();
 	return;
 }
-
-//спросить про статический и динамический массивы, почему методы не работают с динамическими
-//куда записывается динамический и статический
-//
