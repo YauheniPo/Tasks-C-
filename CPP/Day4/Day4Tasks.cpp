@@ -713,8 +713,8 @@ void main(void) {
 	setlocale(LC_ALL,"Russian"); 
 	srand(time(NULL));
 
-	//task1();
-	//task2();
+	task1();
+	task2();
 	task3();
 	task4();
 	task5();
