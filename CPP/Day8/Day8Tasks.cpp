@@ -5,6 +5,93 @@
 #include <malloc.h>
 #include <math.h>
 
+void Print(char*, int);
+void task1(void) {
+	puts("\n------------task1------------");
+
+	const int N = 101;
+	char text[N];
+	int len;
+
+	puts("Enter text: ");
+	gets(text);
+	len = strlen(text);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+	Print(text, len);
+}
+void Print(char *str, int len) {
+	int i = 0;
+	while(i < len) {
+		printf("\n%c", str[i]);
+		++i;
+	}
+}
+//----------------------------------------------------------------
+void Ñonversely_string(char*, int);
+void task2(void) {
+	puts("\n------------task2------------");
+
+	const int N = 101;
+	char text[N];
+	int len;
+
+	puts("Enter text: ");
+	gets(text);
+	len = strlen(text);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+
+	Ñonversely_string(text, len);
+	puts(text);
+}
+void Ñonversely_string(char *text, int len) {
+	int i = 0;
+	char buf;
+	while(i < len/2) {
+		buf = text[i];
+		text[i] = text[len - 1 - i];
+		text[len - 1 - i] = buf;
+		++i;
+	}
+}
+//----------------------------------------------------------------
+void Replace_char(char*, int, char);
+void task3(void) {
+	puts("\n------------task3------------");
+
+	const int N = 101;
+	char text[N];
+	int len;
+	char ch;
+
+	puts("Enter text: ");
+	gets(text);
+	len = strlen(text);
+	if(len > N-1){
+		puts("\nInvalid input.");
+		return;
+	}
+
+	puts("Enter character: ");
+	scanf("%c", &ch);
+
+	Replace_char(text, len, ch);
+	puts(text);
+}
+void Replace_char(char *text, int len, char ch) {
+	int i = 0;
+	while(i < len) {
+		if(text[i] == ch || text[i] == (ch-32)) {
+			text[i] = '!';
+		}
+		++i;
+	}
+}
 //----------------------------------------------------------------
 int Count_char(char*, int, char);
 void Change_chars(char*, int);
@@ -887,6 +974,9 @@ bool Is_palindrome(char *str, int len) {
 void main(void) {
 	srand(time(NULL));
 	
+	task1();
+	task2();
+	task3();
 	task4();
 	task5();
 	task6();
