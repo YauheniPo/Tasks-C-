@@ -1,7 +1,62 @@
 #include <conio.h>
 #include <time.h>
+#include <math.h>
 #include "popoarr.h"
 
+double Max_distance(int *, int *, int, int &, int &, int &, int &);
+void task11(void) {
+	puts("\n------------task11------------");
+
+	int *x, *y;
+	int n, x1, y1, x2, y2;
+	double l2 = 0;
+
+	puts("\nEnter capacity points");
+	Set_number(n);
+	if(n < 1) {
+		puts("Incorrected input");
+		system("pause");
+		return;
+	}
+	x = (int*)calloc(n, sizeof(int));
+	if(!x) {
+		puts("Error.");
+		system("pause");
+		exit(1);
+	}
+	y = (int*)calloc(n, sizeof(int));
+	if(!y) {
+		puts("Error.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		printf("x%d: ", i+1);
+		Set_number(x[i]);
+		printf("y%d: ", i+1);
+		Set_number(y[i]);
+	}
+
+	l2 = Max_distance(x, y, n, x1, y1, x2, y2);
+	printf("\nx%d y%d\nx%d y%d\nl = %lf", x1, y1, x2, y2, l2);
+}
+double Max_distance(int *x, int *y, int n, int &x1, int &y1, int &x2, int &y2) {
+	double l1 = 0, l2 = 0;
+	for(int i = 0; i < n; ++i) {
+		for(int j = i + 1; j < n; ++j) {
+			l1 = sqrt(pow((double)x[i] - x[j], 2) + pow((double)y[i] - y[j], 2));
+			if(l1 > l2) {
+				l2 = l1;
+				x1 = i+1;
+				y1 = i+1;
+				x2 = j+1;
+				y2 = j+1;
+			}
+		}
+	}
+	return l2;
+}
+//----------------------------------------------------------------
 void Print_menu(void);
 void task12(void) {
 	puts("\n------------task12------------");
@@ -246,6 +301,7 @@ void Multiplic(int **arr1, int **arr2, int N, int M) {
 }
 //----------------------------------------------------------------
 void Find_0_and_count_sum_line(int **, int, int, int);
+void Print_result(int, int);
 void task16(void) {
 	puts("\n------------task16------------");
 
@@ -292,11 +348,14 @@ void Find_0_and_count_sum_line(int **arr, int N, int M, int find_num) {
 				for(int l = 0; l < M; ++l) {
 					sum += arr[k][l];
 				}
-				printf("\nsum [%d][] = %d", k, sum);
+				Print_result(k, sum);
 				sum = 0;
 			}
 		}
 	}
+}
+void Print_result(int k, int sum) {
+	printf("\nsum [%d][] = %d", k, sum);
 }
 //----------------------------------------------------------------
 int Prod_between_first_and_last_negative(int **, int, int);
@@ -373,6 +432,7 @@ int Prod_between_first_and_last_negative(int **arr, int N, int M) {
 }
 //----------------------------------------------------------------
 void Find_sedlovaya_point(int **, int, int);
+void Print_point(int **, int, int);
 void task18(void) {
 	puts("\n------------task18------------");
 
@@ -417,22 +477,27 @@ void Find_sedlovaya_point(int **arr, int N, int M) {
 				break;
 			}
 			if(b == N) {
-				printf("\n[%d][%d] %d", k, l, arr[k][l]);
+				Print_point(arr, k, l);
 				return;
 			}
 		}
 	}
 }
+void Print_point(int **arr, int k, int l) {
+	printf("\n[%d][%d] %d", k, l, arr[k][l]);
+}
+
 void main(void) {
 	srand(time(NULL));
 	
+	task11();
 	//task12();
 	//task13();
 	//task14();
 	//task15();
 	//task16();
 	//task17();
-	task18();
+	//task18();
 
 
 	_getch();
