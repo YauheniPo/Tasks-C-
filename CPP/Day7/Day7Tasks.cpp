@@ -14,9 +14,9 @@ void task12(void) {
 	printf("\nEnter capacity of elements: ");
 	Set_number(N);
 	if(N <= 0) {
-		puts("Error");
+		puts("Invalid input");
 		system("pause");
-		exit(1);
+		return;
 	}
 	
 	arr = (int*)malloc(N * sizeof(int));
@@ -181,13 +181,259 @@ void Print_array_multi_method2(int arr[][3], int N) {
 	}
 }
 //----------------------------------------------------------------
+void Multiplic(int **, int **, int, int);
+void task15(void) {
+	puts("\n------------task15------------");
 
+	int **arr1, **arr2;
+	int n, m;
+	
+	printf("\nEnter size of matrix, N = ");
+	Set_number(n);
+	printf("\nEnter size of matrix, M = ");
+	Set_number(m);
+
+	if(n <= 0 && m <= 0) {
+		puts("Invalid input.");
+		system("pause");
+		return;
+	}
+
+	arr1 = (int**)malloc(n * sizeof(int*));
+	if(!(*arr1)) {
+		puts("\nError.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		arr1[i] = (int*)malloc(m * sizeof(int));
+		if(!arr1[i]) {
+			puts("\nError.");
+			system("pause");
+			exit(1);
+		}
+	}
+	arr2 = (int**)malloc(n * sizeof(int*));
+	if(!(*arr2)) {
+		puts("\nError.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		arr2[i] = (int*)malloc(m * sizeof(int));
+		if(!arr2[i]) {
+			puts("\nError.");
+			system("pause");
+			exit(1);
+		}
+	}
+
+	Set_array_multi(arr1, n, m);
+	Print_array_multi(arr1, n, m);
+	puts("-----------------");
+	Set_array_multi(arr2, n, m);
+	Print_array_multi(arr2, n, m);
+	puts("-------Multiplication-------");
+	Multiplic(arr1, arr2, n ,m);
+	Print_array_multi(arr1, n, m);
+}
+void Multiplic(int **arr1, int **arr2, int N, int M) {
+	for(int i = 0; i < N; ++i) {
+		for(int j = 0; j < M; ++j) {
+			arr1[i][j] *= arr2[i][j];
+		}
+	}
+}
+//----------------------------------------------------------------
+void Find_0_and_count_sum_line(int **, int, int, int);
+void task16(void) {
+	puts("\n------------task16------------");
+
+	int **arr;
+	int n, m;
+	int num = 7, find_num = 0;
+	
+	printf("\nEnter size of matrix, N = ");
+	Set_number(n);
+	printf("\nEnter size of matrix, M = ");
+	Set_number(m);
+
+	if(n <= 0 && m <= 0) {
+		puts("Invalid input.");
+		system("pause");
+		return;
+	}
+
+	arr = (int**)malloc(n * sizeof(int*));
+	if(!(*arr)) {
+		puts("\nError.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		arr[i] = (int*)malloc(m * sizeof(int));
+		if(!arr[i]) {
+			puts("\nError.");
+			system("pause");
+			exit(1);
+		}
+	}
+
+	Set_array_multi_from_0_to_int(arr, n, m, num);
+	Print_array_multi(arr, n, m);
+	Find_0_and_count_sum_line(arr, n, m, find_num);
+}
+void Find_0_and_count_sum_line(int **arr, int N, int M, int find_num) {
+	int k = 0, sum = 0;
+	for(int i = 0; i < N; ++i) {
+		for(int j = 0; j < M; ++j) {
+			if(arr[i][j] == find_num) {
+				k = i;
+				for(int l = 0; l < M; ++l) {
+					sum += arr[k][l];
+				}
+				printf("\nsum [%d][] = %d", k, sum);
+				sum = 0;
+			}
+		}
+	}
+}
+//----------------------------------------------------------------
+int Prod_between_first_and_last_negative(int **, int, int);
+void task17(void) {
+	puts("\n------------task17------------");
+
+	int **arr;
+	int n, m, prod;
+	
+	printf("\nEnter size of matrix, N = ");
+	Set_number(n);
+	printf("\nEnter size of matrix, M = ");
+	Set_number(m);
+
+	if(n <= 0 && m <= 0) {
+		puts("Invalid input.");
+		system("pause");
+		return;
+	}
+
+	arr = (int**)malloc(n * sizeof(int*));
+	if(!(*arr)) {
+		puts("\nError.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		arr[i] = (int*)malloc(m * sizeof(int));
+		if(!arr[i]) {
+			puts("\nError.");
+			system("pause");
+			exit(1);
+		}
+	}
+
+	Set_array_multi(arr, n, m);
+	Print_array_multi(arr, n, m);
+	prod = Prod_between_first_and_last_negative(arr, n, m);
+	printf("\nproduct = %d", prod);
+}
+int Prod_between_first_and_last_negative(int **arr, int N, int M) {
+	int prod = 1;
+	int i_first = -1, j_first = -1, i_last = -1, j_last = -1;
+	for(int i = 0; i < N && i_first < 0; ++i) {
+		for(int j = 0; j < M && j_first < 0; ++j) {
+			if(arr[i][j] < 0) {
+				i_first = i;
+				j_first = j;
+			}
+		}
+	}
+	for(int i = N-1; i >= 0 && i_last < 0; --i) {
+		for(int j = M-1; j >= 0 && j_last < 0; --j) {
+			if(arr[i][j] < 0) {
+				i_last = i;
+				j_last = j;
+			}
+		}
+	}
+	int k = 0;
+	for(int i = i_first; i < N; ++i) {
+		for(int j = j_first; j < M; ++j) {
+			if(i == i_last && j == j_last) {
+				if(k == 1) {
+					return 0;
+				} else {
+					return prod/arr[i_first][j_first];
+				}
+			}
+			prod *= arr[i][j];
+			++k;
+		}
+	}
+}
+//----------------------------------------------------------------
+void Find_sedlovaya_point(int **, int, int);
+void task18(void) {
+	puts("\n------------task18------------");
+
+	int n = 3, m = 4;
+	int **arr;
+
+	arr = (int**)calloc(n, sizeof(int*));
+	if(!arr) {
+		puts("\nError.");
+		system("pause");
+		exit(1);
+	}
+	for(int i = 0; i < n; ++i) {
+		*(arr + i) = (int*)calloc(m, sizeof(int));
+		if(!*(arr + i)) {
+			puts("\nError.");
+			system("pause");
+			exit(1);
+		}
+	}
+	//Set_array_multi_from_0_to_int(arr, n, m, 15);
+	for(int i = 0; i < n; ++i) {
+		Set_array_int_keyboard(arr[i], m);
+	}
+	Print_array_multi(arr, n, m);
+	Find_sedlovaya_point(arr, n, m);
+}
+void Find_sedlovaya_point(int **arr, int N, int M) {
+	int k = 0, l = 0, b = 0;
+	for(int i = 0; i < N; ++i) {
+		k = i, l = 0;
+		for(int j = 0; j < M; ++j) {
+			if(arr[k][l] > arr[i][j]) {
+				k = i;
+				l = j;
+			}
+		}
+		for(int p = 0; p < N; ++p) {
+			if(arr[k][l] >= arr[p][l]) {
+				++b;
+			} else {
+				break;
+			}
+			if(b == N) {
+				printf("\n[%d][%d] %d", k, l, arr[k][l]);
+				return;
+			}
+		}
+	}
+}
 void main(void) {
 	srand(time(NULL));
 	
-	task12();
-	task13();
-	task14();
+	//task12();
+	//task13();
+	//task14();
+	//task15();
+	//task16();
+	//task17();
+	task18();
+
 
 	_getch();
 	return;

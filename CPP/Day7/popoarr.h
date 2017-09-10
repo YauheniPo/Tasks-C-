@@ -72,7 +72,9 @@ void Set_array_multi(int **arr, int N, int M);
 //			*(*(arr + i) + j) = rand() % 100 - 50;
 //		}
 //	}
-//}
+//
+void Set_array_multi_from_0_to_int(int **arr, int N, int M, int num);
+
 void Print_array_multi(int **arr, int N, int M);
 //{
 //	for(int i = 0; i < N; ++i) {

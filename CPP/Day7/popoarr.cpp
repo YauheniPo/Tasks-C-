@@ -61,6 +61,13 @@ void Set_array_multi(int **arr, int N, int M) {
 		}
 	}
 }
+void Set_array_multi_from_0_to_int(int **arr, int N, int M, int num) {
+	for(int i = 0; i < N; ++i) {
+		for(int j = 0; j < M; ++j) {
+			*(*(arr + i) + j) = 0 + rand() % (num - 0 + 1);
+		}
+	}
+}
 void Print_array_multi(int **arr, int N, int M) {
 	for(int i = 0; i < N; ++i) {
 		for(int j = 0; j < M; ++j) {

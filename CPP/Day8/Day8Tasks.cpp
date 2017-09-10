@@ -78,7 +78,7 @@ void task3(void) {
 	}
 
 	puts("Enter character: ");
-	scanf("%c", &ch);
+	Set_char(ch);
 
 	Replace_char(text, len, ch);
 	puts(text);
@@ -112,7 +112,7 @@ void task4(void) {
 	}
 
 	puts("Enter character: ");
-	scanf("%c", &ch);
+	Set_char(ch);
 
 	k = Count_char(text, len, ch);
 	Change_chars(text, len);
@@ -329,6 +329,7 @@ void task10(void) {
 
 	char x[20], y[20], z[20], t[80] = "\0";
 	int len;
+
 	puts("Enter name: ");
 	gets(x);
 	len = strlen(x);
