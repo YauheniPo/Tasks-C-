@@ -1,4 +1,4 @@
-#include "popoarr.h"
+#include "popo_eight_task.h"
 
 void Set_number(int&x) {
 	scanf("%d",&x);

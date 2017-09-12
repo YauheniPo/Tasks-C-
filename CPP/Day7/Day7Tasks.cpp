@@ -3,6 +3,285 @@
 #include <math.h>
 #include "popoarr.h"
 
+//----------------------------------------------------------------
+int Sum_elements(int *arr, int N);
+void task1(void) {
+	puts("\n------------task1------------");
+
+	const int N = 7;
+	int arr[N] = {0};
+	int sum = 0;
+
+	puts("\nEnter number (max 6 of elements): ");
+	Set_array_int_keyboard(arr, N);
+	sum = Sum_elements(arr, N);
+	printf("\nsum = %d", sum);
+}
+int Sum_elements(int *arr, int N) {
+	int n = 0, sum = 0;
+	do {
+		sum += arr[n];
+		++n;
+	} while(n < N);
+	return sum;
+}
+//----------------------------------------------------------------
+void Print_backwards(int *arr, int N);
+void task2(void) {
+	puts("\n------------task2------------");
+
+	const int N = 11;
+	int arr[N] = {0};
+
+	puts("\nEnter number (max 10 of elements): ");
+	Set_array_int_keyboard(arr, N);
+	Print_backwards(arr, N);
+}
+void Print_backwards(int *arr, int N) {
+	for(int i = N-1; i >= 0; --i) {
+		printf("%d ", arr[i]);
+	}
+}
+//----------------------------------------------------------------
+int Sum_even_elements(int *arr, int N);
+void task3(void) {
+	puts("\n------------task3------------");
+
+	const int N = 11;
+	int arr[N] = {0};
+	int sum = 0;
+
+	puts("\nEnter number (max 10 of elements): ");
+	Set_array_int_keyboard(arr, N);
+	sum = Sum_even_elements(arr, N);
+	printf("\nsum = %d", sum);
+}
+int Sum_even_elements(int *arr, int N) {
+	int sum = 0;
+	for(int i = 0; i < N; i += 2) {
+		sum += arr[i];
+	}
+	return sum;
+}
+//----------------------------------------------------------------
+int Capacity_negat_elem(double *arr, int N);
+double Sum_positive_elem(double *arr, int N);
+double Prod_uneven_elem(double *arr, int N);
+void task4(void) {
+	puts("\n------------task4------------");
+
+	const int N = 11;
+	double arr[N] = {0};
+	int capacity_negat_elem = 0;
+	double sum_positive_elem = 0;
+	double prod_uneven_elem = 0;
+
+	//puts("\nEnter double arra");
+	//Set_array_double_keyboard(arr, N);
+	Set_array_double_mix(arr, N);
+	Print_array_double(arr, N);
+
+	capacity_negat_elem = Capacity_negat_elem(arr, N);
+	sum_positive_elem = Sum_positive_elem(arr, N);
+	prod_uneven_elem = Prod_uneven_elem(arr, N);
+	
+	printf("\ncapacity negative elements = %d\nsum positive elements = %.2lf\nproduct uneven elements = %.2lf", capacity_negat_elem, sum_positive_elem, prod_uneven_elem);
+}
+int Capacity_negat_elem(double *arr, int N) {
+	int n = 0;
+	for(int i = 0; i < N; ++i) {
+		if(arr[i] < 0) {
+			++n;
+		}
+	}
+	return n;
+}
+double Sum_positive_elem(double *arr, int N) {
+	double sum = 0;
+	for(int i = 0; i < N; ++i) {
+		if(arr[i] > 0) {
+			sum += arr[i];
+		}
+	}
+	return sum;
+}
+double Prod_uneven_elem(double *arr, int N) {
+	double prod = 1;
+	for(int i = 1; i < N; i += 2) {
+		prod *= arr[i];
+	}
+	return prod;
+}
+//----------------------------------------------------------------
+int Capacity(int *arr, int N, int num);
+void task5(void) {
+	puts("\n------------task5------------");
+
+	const int N = 21;
+	int arr[N] = {0};
+	int num = 0, capacity = 0;
+
+	Set_array_int_posit_from_0_to_num(arr, N, 5);
+	Print_array_int(arr, N);
+
+	num = 5;
+	capacity = Capacity(arr, N, num);
+	printf("\n%d: %d", num, capacity);
+	num = 4;
+	capacity = Capacity(arr, N, num);
+	printf("\n%d: %d", num, capacity);
+	num = 3;
+	capacity = Capacity(arr, N, num);
+	printf("\n%d: %d", num, capacity);
+	num = 2;
+	capacity = Capacity(arr, N, num);
+	printf("\n%d: %d", num, capacity);
+}
+int Capacity(int *arr, int N, int num) {
+	int cap = 0;
+	for(int i = 0; i < N; ++i) {
+		if(arr[i] == num) {
+			++cap;
+		}
+	}
+	return cap;
+}
+//----------------------------------------------------------------
+void task6(void) {
+	puts("\n------------task6------------");
+
+	const int N = 11;
+	int arr[N];
+	int num;
+	int pos;
+
+	Set_array_int_mix(arr, N);
+	Print_array_int(arr, N);
+
+	puts("\nEnter the added element: ");
+	Set_number(num);
+	puts("Enter # position of the new element: ");
+	Set_number(pos);
+
+	if(pos >= N) {
+		puts("\nIncorrected input");
+		system("pause");
+		return;
+	}
+	Add_element_in_position(arr, N, num, pos);
+	Print_array_int(arr, N);
+}
+//----------------------------------------------------------------
+void Swap_max_min(int *arr, int N, int max, int min);
+void task7(void) {
+	puts("\n------------task7------------");
+
+	const int N = 21;
+	int arr[N];
+	int max, min;
+
+	Set_array_int_mix(arr, N);
+	Print_array_int(arr, N);
+
+	max = Get_max_element_position(arr, N);
+	min = Get_min_element_position(arr, N);
+
+	printf("\nmax = %d, min = %d\n", max, min);
+
+	Swap_max_min(arr, N, max, min);
+	Print_array_int(arr, N);
+}
+void Swap_max_min(int *arr, int N, int i_max, int i_min) {
+	int max = arr[i_max], min = arr[i_min];
+	for(int i = 0; i < N; ++i) {
+		if(arr[i] == max) {
+			arr[i] = min;
+		}
+		if(arr[i] == min) {
+			arr[i] = max;
+		}
+	}
+}
+//----------------------------------------------------------------
+void Swap_elements(int *arr, int i, int j);
+void task8(void) {
+	puts("\n------------task8------------");
+
+	const int N = 11;
+	int arr[N];
+	int i, j;
+
+	Set_array_int_mix(arr, N);
+	Print_array_int(arr, N);
+
+	puts("Enter index of element");
+	printf("1. ");
+	Set_number(i);
+	printf("2. ");
+	Set_number(j);
+	if(i < 0 || i > N-1 || j < 0 || j > N-1) {
+		puts("\nIncorrected input");
+		system("pause");
+		return;
+	}
+	Swap_elements(arr, i, j);
+	Print_array_int(arr, N);
+}
+void Swap_elements(int *arr, int i, int j) {
+	int buf = arr[i];
+	arr[i] = arr[j];
+	arr[j] = buf;
+}
+//----------------------------------------------------------------
+void task9(void) {
+	puts("\n------------task9------------");
+
+	const int N = 20;
+	double arr[N] = {4.2,3.1,5.4,3,7,20.7,20.1,4.6,11,22.2,8,8.9,1.1,5.2,4.3,9,5,3.6,2.2,7.5};
+	Print_array_double(arr, 20);
+
+	puts("");
+	Sort_arr_double(arr ,N, '>');
+	Print_array_double(arr, N);
+}
+//----------------------------------------------------------------
+void Sort_array(double *arr, int N);
+void task10(void) {
+	puts("\n------------task10------------");
+
+	const int N = 20;
+	double arr[N];
+
+	Set_array_double_mix(arr, N);
+	Print_array_double(arr, N);
+
+	puts("");
+	Sort_array(arr, N);
+	Print_array_double(arr, N);
+}
+void Sort_array(double *arr, int N) {
+	double y;
+	int j;
+	for(int i = 1; i < N/2; ++i) {
+		y = arr[i];
+		j = i - 1;
+		while(y < arr[j] && j >= 0) {
+			arr[j+1] = arr[j];
+			--j;
+		}
+		arr[j+1] = y;
+	}
+	for(int i = N/2+1; i < N-1; ++i) {
+		for(int j = N/2; j < N-(i-N/2); ++j) {
+			if(arr[j] > arr[j+1]) {
+				y = arr[j];
+				arr[j] = arr[j+1];
+				arr[j+1] = y;
+			}
+		}
+	}
+}
+//----------------------------------------------------------------
 double Max_distance(int *, int *, int, int &, int &, int &, int &);
 void task11(void) {
 	puts("\n------------task11------------");
@@ -113,7 +392,7 @@ void task12(void) {
 					switch(ch) {
 						case '<':
 						case '>':
-							Sort_arr(arr, N, ch);
+							Sort_arr_int(arr, N, ch);
 							Print_array_int(arr, N);
 							break;
 						default:
@@ -490,14 +769,24 @@ void Print_point(int **arr, int k, int l) {
 void main(void) {
 	srand(time(NULL));
 	
+	task1();
+	task2();
+	task3();
+	task4();
+	task5();
+	task6();
+	task7();
+	task8();
+	task9();
+	task10();
 	task11();
-	//task12();
-	//task13();
-	//task14();
-	//task15();
-	//task16();
-	//task17();
-	//task18();
+	task12();
+	task13();
+	task14();
+	task15();
+	task16();
+	task17();
+	task18();
 
 
 	_getch();

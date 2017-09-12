@@ -1,9 +1,9 @@
-#include "popoarr.h"
 #include <conio.h>
 #include <time.h>
 #include <string.h>
 #include <malloc.h>
 #include <math.h>
+#include "popo_eight_task.h"
 
 void Print(char*, int);
 void task1(void) {
@@ -882,7 +882,7 @@ void task22(void) {
 					switch(ch) {
 						case '<':
 						case '>':
-							Sort_arr(arr, N, ch);
+							Sort_arr_int(arr, N, ch);
 							Print_array_int(arr, N);
 							break;
 						default:
