@@ -91,24 +91,8 @@ printf(...,z,*p); -3 1
 #include <locale.h>
 
 void main() {
-	 int x[]= {1,2,3};
- printf("X - %d\n", &x);
- printf("X - %d\n", &*x);
-
- int* x2;
- x2 = x;
- printf("X - %d\n", &x2);
- printf("X - %d\n", &*x2);
-
- char str[] = "Hello";
- printf("Str - %d\n", &str);
- printf("Str - %d\n", &*str);
-
- char* str2;
- str2 = str;
- printf("Str - %d\n", &str2);
- printf("Str - %d\n", &*str2);
-	
+	char *str = "Dasha";
+	printf("%c", str[2]);
 
 	_getch();
 	return;

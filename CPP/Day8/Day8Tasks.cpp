@@ -16,10 +16,7 @@ void task1(void) {
 	puts("Enter text: ");
 	gets(text);
 	len = strlen(text);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
+
 	Print(text, len);
 }
 void Print(char *str, int len) {
@@ -41,10 +38,6 @@ void task2(void) {
 	puts("Enter text: ");
 	gets(text);
 	len = strlen(text);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
 
 	Ñonversely_string(text, len);
 	puts(text);
@@ -72,10 +65,6 @@ void task3(void) {
 	puts("Enter text: ");
 	gets(text);
 	len = strlen(text);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
 
 	puts("Enter character: ");
 	Set_char(ch);
@@ -106,10 +95,6 @@ void task4(void) {
 	puts("Enter text: ");
 	gets(text);
 	len = strlen(text);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
 
 	puts("Enter character: ");
 	Set_char(ch);
@@ -158,10 +143,7 @@ void task5(void) {
 	puts("Enter text: ");
 	gets(text);
 	len = strlen(text);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
+
 	k = Count_words(text, len);
 	printf("\n%d words", k);
 }
@@ -193,17 +175,11 @@ void task6(void) {
 	puts("Enter string 1: ");
 	gets(str1);
 	len1 = strlen(str1);
-	if(len1 > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
+
 	puts("Enter string 2: ");
 	gets(str2);
 	len2 = strlen(str2);
-	if(len2 > M-1){
-		puts("\nInvalid input.");
-		return;
-	}
+
 	Prisv(str1, str2);
 	puts(str1);
 }
@@ -228,14 +204,11 @@ void task7(void) {
 	puts("Enter string 1: ");
 	gets(str1);
 	len1 = strlen(str1);
-	if(len1 > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
+
 	puts("Enter string 2: ");
 	gets(str2);
 	len2 = strlen(str2);
-	if(len2 > 20-1 && len1+len2 > N-1){
+	if(len1+len2 > N-1){
 		puts("\nInvalid input.");
 		return;
 	}
@@ -262,9 +235,7 @@ void task8(void) {
 	puts("Enter string (max 10): ");
 	gets(str);
 	len = Dlina(str);
-	if(len > N-1){
-		puts("\nInvalid input.");
-	}
+
 	printf("\nlength = %d", len);
 }
 int Dlina(char *str) {
@@ -286,17 +257,11 @@ void task9(void) {
 	puts("Enter first string: ");
 	gets(x);
 	len = strlen(x);
-	if(len > 20-1){
-		puts("\nInvalid input.");
-		return;
-	}
+	
 	puts("Enter second string: ");
 	gets(y);
 	len = strlen(y);
-	if(len > 20-1){
-		puts("\nInvalid input.");
-		return;
-	}
+	
 	srav = Srav(x, y);
 	printf("\n1 - str1>str2, 0 - str=str2, -1 - str1<str2\nTotal: %d", srav);
 }
@@ -333,17 +298,11 @@ void task10(void) {
 	puts("Enter name: ");
 	gets(x);
 	len = strlen(x);
-	if(len > 20-1){
-		puts("\nInvalid input.");
-		return;
-	}
+	
 	puts("Enter surname: ");
 	gets(y);
 	len = strlen(y);
-	if(len > 20-1){
-		puts("\nInvalid input.");
-		return;
-	}
+	
 	puts("Enter patronymic: ");
 	gets(z);
 	len = strlen(z);
@@ -368,10 +327,7 @@ void task11(void) {
 	puts("Enter string: ");
 	gets(str);
 	len = strlen(str);
-	if(len > N-1){
-		puts("\nInvalid input.");
-		return;
-	}
+	
 	if(len < 10) {
 		Delete_first(str, len);
 	} else if(len > 10) {
@@ -410,7 +366,7 @@ void task12(void) {
 	puts("Enter word: ");
 	gets(word);
 	len_word = strlen(word);
-	if(len_str > N-1 && len_str < len_word){
+	if(len_str < len_word){
 		puts("\nInvalid input.");
 		return;
 	}
@@ -433,10 +389,7 @@ void task13(void) {
 	puts("Enter number: ");
 	gets(str);
 	len = strlen(str);
-	if(len != N-1) {
-		puts("\nInvalid input.");
-		return;
-	}
+
 	Print_even(str, len);
 }
 void Print_even(char *str, int n) {
@@ -458,10 +411,6 @@ void task14(void) {
 	puts("Enter number: ");
 	gets(str);
 	len = strlen(str);
-	if(len != N-1) {
-		puts("\nInvalid input.");
-		return;
-	}
 
 	Prod_number(str, len, num);
 	printf("\n%d", num);
@@ -483,10 +432,7 @@ void task15(void) {
 	puts("Enter number: ");
 	gets(str);
 	len = strlen(str);
-	if(len != N-1) {
-		puts("\nInvalid input.");
-		return;
-	}
+
 	Print_num(str, len);
 }
 void Print_num(char *str, int n) {
@@ -511,10 +457,7 @@ void task16(void) {
 	puts("Enter data _ _/_ _/_ _ _ _: ");
 	gets(data);
 	len = strlen(data);
-	if(len != N-1) {
-		puts("\nInvalid input.");
-		return;
-	}
+
 	day = Get_int_to_str(data, 0, 1);
 	month = Get_int_to_str(data, 3, 4);
 	year = Get_int_to_str(data, 6, 9);
@@ -589,10 +532,6 @@ void task17(void) {
 		printf("\nEnter number [1000-9999]: ");
 		gets(str);
 		int len = strlen(str);
-		if(len > N - 1) {
-			puts("\nInvalid input.");
-			return;
-		}
 		for(int i = 0; i < len; ++i) {
 			if(str[i] < 48 || str[i] > 57) {
 				puts("\nInvalid input.");
@@ -717,10 +656,7 @@ void task18(void) {
 	printf("Enter number [0-100]: ");
 	gets(str);
 	int len = strlen(str);
-	if(len > N - 1) {
-		puts("\nInvalid input.");
-		return;
-	}
+
 	while(str[i]) {
 		if(str[i] < 48 || str[i] > 57) {
 			puts("\nInvalid input.");
@@ -743,10 +679,6 @@ void task19(void) {
 	printf("Enter string [0-100]: ");
 	gets(str);
 	len = strlen(str);
-	if(len > N - 1) {
-		puts("\nInvalid input.");
-		return;
-	}
 	
 	for(int i = 0; i < len; ++i) {
 		++ch[str[i] + 0];
@@ -953,10 +885,7 @@ void task23(void) {
 	printf("\nEnter a word (1-20 chars): ");
 	gets(str);
 	len = strlen(str);
-	if(len > 20) {
-		puts("Error");
-		return;
-	}
+	
 	b = Is_palindrome(str, len);
 	if(b) {
 		puts("It is a palindrome");
