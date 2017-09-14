@@ -5,7 +5,7 @@
 #include <math.h>
 #include "popo_eight_task.h"
 
-void Print(char*, int);
+void Print(char *const, int);
 void task1(void) {
 	puts("\n------------task1------------");
 
@@ -19,7 +19,7 @@ void task1(void) {
 
 	Print(text, len);
 }
-void Print(char *str, int len) {
+void Print(char *const str, int len) {
 	int i = 0;
 	while(i < len) {
 		printf("\n%c", str[i]);

@@ -110,14 +110,12 @@ void main(void){
 	//		printf("%d\n", *(*(arr +a) +b));
 	//	}
 	//}
-	char *i;
-	i = (char*)malloc(3 * sizeof(char));
-	puts(i);
-	i[3] = '\0';
-	puts(i);
-	printf("%d\n", strlen(i));
-	printf("%c\n", i[0]);
-
+	int x = 6;
+	int *p;
+	p = &x;
+	printf("%d", *p);
+	p++;
+	printf("%d", *p);
 
 
 
